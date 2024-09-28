@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\PBL_ThermoMotorIOT_Cad.props" />
-</Project>
