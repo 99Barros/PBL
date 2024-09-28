@@ -1,0 +1,207 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\views\\sobre\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\views\\sobre\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\dao\\helperdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\dao\\helperdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\dao\\conexaobd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\dao\\conexaobd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\controllers\\sobre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\controllers\\sobre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|c:\\users\\asus\\source\\repos\\pbl_thermomotoriot_cad\\pbl_thermomotoriot_cad\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0633D59C-0F24-4351-A75B-97F67C0AD6FF}|PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad.csproj|solutionrelative:pbl_thermomotoriot_cad\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Views\\Sobre\\Index.cshtml",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Views\\Sobre\\Index.cshtml",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Views\\Sobre\\Index.cshtml",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Views\\Sobre\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-28T18:23:43.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-28T18:07:39.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ConexaoBD.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\DAO\\ConexaoBD.cs",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\DAO\\ConexaoBD.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\DAO\\ConexaoBD.cs",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\DAO\\ConexaoBD.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:09:22.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HelperDAO.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\DAO\\HelperDAO.cs",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\DAO\\HelperDAO.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\DAO\\HelperDAO.cs",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\DAO\\HelperDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:08:40.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-28T18:07:45.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Models\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Models\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Models\\LoginViewModel.cs",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Models\\LoginViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:04:07.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:03:42.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Sobre.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Controllers\\Sobre.cs",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Controllers\\Sobre.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Controllers\\Sobre.cs",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Controllers\\Sobre.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:03:31.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:02:54.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:02:50.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "PBL_ThermoMotorIOT_Cad\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\PBL_ThermoMotorIOT_Cad\\PBL_ThermoMotorIOT_Cad\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "PBL_ThermoMotorIOT_Cad\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAmwM8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-28T17:50:15.909Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

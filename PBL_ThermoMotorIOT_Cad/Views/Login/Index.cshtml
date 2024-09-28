@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Login ThermoMotor IoT Solution";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans|Bad+Script" />
+</head>
+
+<body>
+    <header class="container">
+        <nav class="menu-opcoes">
+            <h1>
+                <ul>
+                    <li><a href="~/index.html">Home</a></li>
+                    <li><a href="~/sobre.html#">Sobre</a></li>
+                    <li><a href="#">Cadastro 1</a></li>
+                    <li><a href="#">Cadastro 2</a></li>
+                    <li><a href="#">Cadastro 3</a></li>
+                    <li><a href="#">Dashboards</a></li>
+                </ul>
+            </h1>
+        </nav>
+    </header>
+
+    <section id="main">
+        <section id="painel-login">
+            <div class="container-login">
+                <h2>Login</h2>
+                <form action="~/login" method="post">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="username" required />
+                    <br />
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required />
+                    <br />
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+        </section>
+    </section>
+
+    <!-- SVG para os raios -->
+    <svg class="lightning lightning-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="yellow">
+        <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
+    </svg>
+
+    <svg class="lightning lightning-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="yellow">
+        <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
+    </svg>
+
+    <footer>
+        <p>ThermoMotor IoT Solutions &copy; 2024</p>
+    </footer>
+</body>
+</html>
