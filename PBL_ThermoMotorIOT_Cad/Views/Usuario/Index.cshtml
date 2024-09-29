@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<PBL_ThermoMotorIOT_Cad.Models.UsuarioViewModel>
+
+<h2>Listagem dos Usuários</h2>
+<a href="Usuario/Create">Novo Registro</a>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Nome da usuario</th>
+        <th>CNPJ</th>
+        <th>Endereço</th>
+        <th>Telefone</th>
+        <th>Email</th>
+    </tr>
+    @if (Model is not null)
+    {
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>
+                    <a href="usuarios/edit?id=@usuario.IdUsuario">
+                        <img src="img/8666681_edit_icon.png" alt="Editar" style="width:16px; height:16px;"> Editar
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:apagarUsuario(@usuario.IdUsuario)">Apagar</a>
+                </td>
+                <td>@usuario.Usuario</td>
+                <td>@usuario.Nome</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.DataNascimento</td>
+                <td>@usuario.Telefone</td>
+                <td>@usuario.DataRegistro</td>
+            </tr>
+        }
+    }
+</table>
+
+
+<script>
+    function apagarUsuario(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Usuario/Delete?id=' + id;
+    }
+</script>

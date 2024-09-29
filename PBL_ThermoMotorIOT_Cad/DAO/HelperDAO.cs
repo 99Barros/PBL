@@ -12,7 +12,7 @@ namespace Dentista.DAO
             using (SqlConnection conexao = ConexaoBD.GetConexao())
             {
                 using (SqlDataAdapter adapter = new SqlDataAdapter(sql, conexao))
-                {
+                {   
                     if (parametros != null)
                         adapter.SelectCommand.Parameters.AddRange(parametros);
                     DataTable tabelaTemp = new DataTable();

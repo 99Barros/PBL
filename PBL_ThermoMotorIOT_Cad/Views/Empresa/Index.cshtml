@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<PBL_ThermoMotorIOT_Cad.Models.EmpresaViewModel>
+
+<h2>Listagem das Empresas</h2>
+<a href="Empresa/Create">Novo Registro</a>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Nome da Empresa</th>
+        <th>CNPJ</th>
+        <th>Endereço</th>
+        <th>Telefone</th>
+        <th>Email</th>
+    </tr>
+    @if(Model is not null)
+    {
+        @foreach (var empresa in Model)
+        {
+            <tr>
+                <td>
+                    <a href="Empresa/edit?id=@empresa.IdEmpresa"> Editar</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:apagarEmpresa(@empresa.IdEmpresa)">Apagar</a>
+                </td>
+                <td>@empresa.NomeEmpresa</td>
+                <td>@empresa.CNPJ</td>
+                <td>@empresa.Endereco</td>
+                <td>@empresa.Telefone</td>
+                <td>@empresa.Email</td>
+                <td>@empresa.DataCadastro</td>
+            </tr>
+        }
+    }
+</table>
+
+
+<script>
+    function apagarEmpresa(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Empresa/Delete?id=' + id;
+    }
+</script>
