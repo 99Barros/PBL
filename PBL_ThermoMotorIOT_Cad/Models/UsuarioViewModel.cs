@@ -8,7 +8,7 @@ namespace PBL_ThermoMotorIOT_Cad.Models
 
         [Required(ErrorMessage = "Usuário é obrigatório.")]
         [StringLength(50, ErrorMessage = "O usuário deve ter no máximo 50 caracteres.")]
-        public string Usuario { get; set; }
+        public string Login { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatória.")]
         [StringLength(255, ErrorMessage = "A senha deve ter no máximo 255 caracteres.")]
@@ -27,7 +27,7 @@ namespace PBL_ThermoMotorIOT_Cad.Models
         public DateTime? DataNascimento { get; set; }
 
         [StringLength(20, ErrorMessage = "O telefone deve ter no máximo 20 caracteres.")]
-        public string Telefone { get; set; }
+        public string? Telefone { get; set; }
 
         public DateTime DataRegistro { get; set; }
     }

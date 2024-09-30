@@ -19,11 +19,11 @@ namespace PBL_ThermoMotorIOT_Cad.Models
         public string Endereco { get; set; }
 
         [StringLength(20, ErrorMessage = "O telefone deve ter no máximo 20 caracteres.")]
-        public string Telefone { get; set; }
+        public string? Telefone { get; set; }
 
         [EmailAddress(ErrorMessage = "Email inválido.")]
         [StringLength(100, ErrorMessage = "O email deve ter no máximo 100 caracteres.")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         public DateTime DataCadastro { get; set; }
     }

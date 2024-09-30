@@ -1,33 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-@model PBL_ThermoMotorIOT_Cad.Models.EmpresaViewModel
+﻿@model PBL_ThermoMotorIOT_Cad.Models.EmpresaViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h2>Cadastro de Empresa</h2>
-<form action="Salvar" method="post">
-    <label for="IdEmpresa" class="control-label">Id da Empresa</label>
-    <input type="text" Name="IdEmpresa" value="@Model.IdEmpresa" readonly />
-    <br />
-    <label for="NomeEmpresa" class="control-label">Nome da Empresa</label>
-    <input type="text" Name="NomeEmpresa" value="@Model.NomeEmpresa" required />
-    <br />
-    <label for="CNPJ" class="control-label">CNPJ</label>
-    <input type="text" Name="CNPJ" value="@Model.CNPJ" required/>
-    <br />
-    <label for="Endereco" class="control-label">Endereço</label>
-    <input type="text" Name="Endereco" value="@Model.Endereco" required />
-    <br />
-    <label for="Telefone" class="control-label">Telefone</label>
-    <input type="text" Name="Telefone" value="@Model.Telefone" />
-    <br />
-    <label for="Email" class="control-label">Email</label>
-    <input type="text" Name="Email" value="@Model.Email" />
-    <br />
-    <input type="submit" value="Salvar dados" />
-    <br />
+<form asp-action="Salvar" method="post" class="form">
+    <div class="form-group">
+        <label asp-for="IdEmpresa" class="control-label">Id da Empresa</label>
+        <input asp-for="IdEmpresa" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="NomeEmpresa" class="control-label">Nome da Empresa</label>
+        <input asp-for="NomeEmpresa" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="CNPJ" class="control-label">CNPJ</label>
+        <input asp-for="CNPJ" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Endereco" class="control-label">Endereço</label>
+        <input asp-for="Endereco" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Telefone" class="control-label">Telefone</label>
+        <input asp-for="Telefone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar dados</button>
 </form>

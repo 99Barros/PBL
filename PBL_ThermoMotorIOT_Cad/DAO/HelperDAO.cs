@@ -1,9 +1,9 @@
-﻿using global::DAO;
+﻿using DAO;
 using System.Data;
 using System.Data.SqlClient;
 
 
-namespace Dentista.DAO
+namespace PBL_ThermoMotorIOT_Cad.DAO
 {
     public static class HelperDAO
     {
@@ -12,7 +12,7 @@ namespace Dentista.DAO
             using (SqlConnection conexao = ConexaoBD.GetConexao())
             {
                 using (SqlDataAdapter adapter = new SqlDataAdapter(sql, conexao))
-                {   
+                {
                     if (parametros != null)
                         adapter.SelectCommand.Parameters.AddRange(parametros);
                     DataTable tabelaTemp = new DataTable();

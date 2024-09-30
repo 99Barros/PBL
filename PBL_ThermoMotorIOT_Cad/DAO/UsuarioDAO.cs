@@ -1,5 +1,4 @@
-﻿using Dentista.DAO;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Data;
 using PBL_ThermoMotorIOT_Cad.Models;
 using DAO;
@@ -11,13 +10,13 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
         public static void Insert(UsuarioViewModel usuario)
         {
             SqlConnection connection = ConexaoBD.GetConexao();
-            string sql = "INSERT INTO usuarios values (@IdUsuario, @Usuario, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro)";
+            string sql = "INSERT INTO usuarios values (@Login, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro)";
             HelperDAO.ExecutaSql(sql, CreateParameters(usuario));
         }
         public static void Update(UsuarioViewModel usuario)
         {
             SqlConnection connection = ConexaoBD.GetConexao();
-            string sql = "UPDATE usuarios set Usuario=@Usuario, Senha=@Senha, Nome=@Nome, Email=@Email, " +
+            string sql = "UPDATE usuarios set Login=@Login, Senha=@Senha, Nome=@Nome, Email=@Email, " +
                 "DataNascimento=@DataNascimento, Telefone=@Telefone, DataRegistro=@DataRegistro WHERE IdUsuario = @IdUsuario";
             HelperDAO.ExecutaSql(sql, CreateParameters(usuario));
         }
@@ -59,7 +58,7 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
         {
             UsuarioViewModel model = new UsuarioViewModel();
             model.IdUsuario = Convert.ToInt32(registro["IdUsuario"]);
-            model.Usuario = registro["Usuario"].ToString();
+            model.Login = registro["Login"].ToString();
             model.Nome = registro["Nome"].ToString();
             model.Email = registro["Email"].ToString();
             model.DataNascimento = Convert.ToDateTime(registro["DataNascimento"]);
@@ -76,13 +75,13 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
         {
             SqlParameter[] parameters = new SqlParameter[8];
             parameters[0] = new SqlParameter("IdUsuario", usuario.IdUsuario);
-            parameters[1] = new SqlParameter("Usuario", usuario.Usuario);
+            parameters[1] = new SqlParameter("Login", usuario.Login);
             parameters[2] = new SqlParameter("Senha", usuario.Senha);
             parameters[3] = new SqlParameter("Nome", usuario.Nome);
             parameters[4] = new SqlParameter("Email", usuario.Email);
             parameters[5] = new SqlParameter("DataNascimento", usuario.DataNascimento);
             parameters[6] = new SqlParameter("Telefone", usuario.Telefone);
-            parameters[7] = new SqlParameter("DataRegsitro", usuario.DataRegistro);
+            parameters[7] = new SqlParameter("DataRegistro", usuario.DataRegistro);
             return parameters;
         }
     }
