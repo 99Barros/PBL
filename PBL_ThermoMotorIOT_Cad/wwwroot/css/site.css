@@ -1,5 +1,5 @@
-/* Aplica o fundo azul marinho em todo o corpo da p·gina */
-body {
+/* Aplica o fundo azul marinho em todo o corpo da p√°gina */
+html,body {
     background-color: #f4f4f4;
     /* Azul marinho */
     font-family: 'PT Sans', sans-serif;
@@ -34,22 +34,22 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Estilo para o cabeÁalho */
+/* Estilo para o cabe√ßalho */
 header {
     width: 100%;
     padding: 0;
-    /* Remove espaÁamento interno */
+    /* Remove espa√ßamento interno */
     margin: 0;
-    /* Remove espaÁamento externo */
+    /* Remove espa√ßamento externo */
     background-color: #005b96;
     text-align: center;
     position: fixed;
-    /* Fixar a barra no topo da p·gina */
+    /* Fixar a barra no topo da p√°gina */
     top: 0;
     /* Posicionar no topo */
     left: 0;
     z-index: 1000;
-    /* Garante que o cabeÁalho fique acima do conte˙do */
+    /* Garante que o cabe√ßalho fique acima do conte√∫do */
 }
 
 footer {
@@ -66,7 +66,7 @@ h1 {
     color: #005b96;
 }
 
-/* Estilo para os links de navegaÁ„o no cabeÁalho */
+/* Estilo para os links de navega√ß√£o no cabe√ßalho */
 nav.menu-opcoes ul {
     list-style-type: none;
     padding: 0;
@@ -83,7 +83,7 @@ nav.menu-opcoes ul {
             text-decoration: none;
             font-size: 18px;
             padding: 10px 0;
-            /* Adiciona espaÁamento interno */
+            /* Adiciona espa√ßamento interno */
             display: inline-block;
         }
 
@@ -101,17 +101,17 @@ nav.menu-opcoes ul {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     /* Sombra sutil */
     margin-top: 75px;
-    /* EspaÁo para que o login n„o fique encostado no menu */
+    /* Espa√ßo para que o login n√£o fique encostado no menu */
 }
 
-    /* Estilo para o tÌtulo de login */
+    /* Estilo para o t√≠tulo de login */
     .container-login h2 {
         text-align: center;
         margin-bottom: 20px;
         font-size: 24px;
     }
 
-    /* Estilo para os rÛtulos dos campos de formul·rio */
+    /* Estilo para os r√≥tulos dos campos de formul√°rio */
     .container-login label {
         display: block;
         margin-bottom: 5px;
@@ -129,12 +129,12 @@ nav.menu-opcoes ul {
         font-size: 16px;
     }
 
-    /* Estilo para o bot„o */
+    /* Estilo para o bot√£o */
     .container-login button {
         width: 100%;
         padding: 10px;
         background-color: #0059b3;
-        /* Cor de bot„o azul */
+        /* Cor de bot√£o azul */
         color: white;
         border: none;
         border-radius: 5px;
@@ -142,7 +142,7 @@ nav.menu-opcoes ul {
         cursor: pointer;
     }
 
-        /* Efeito ao passar o mouse no bot„o */
+        /* Efeito ao passar o mouse no bot√£o */
         .container-login button:hover {
             background-color: #003d80;
             /* Tom mais escuro ao passar o mouse */
@@ -200,24 +200,24 @@ nav.menu-opcoes ul {
 
 .lightning-left {
     left: 250px;
-    /* PosiÁ„o ‡ esquerda */
+    /* Posi√ß√£o √† esquerda */
     top: 50%;
     /* Centraliza verticalmente */
     transform: translateY(-50%);
     /* Ajusta o centro vertical */
     animation-delay: 0s;
-    /* AnimaÁ„o sem atraso */
+    /* Anima√ß√£o sem atraso */
 }
 
 .lightning-right {
     right: 250px;
-    /* PosiÁ„o ‡ direita */
+    /* Posi√ß√£o √† direita */
     top: 50%;
     /* Centraliza verticalmente */
     transform: translateY(-50%);
     /* Ajusta o centro vertical */
     animation-delay: 0s;
-    /* AnimaÁ„o sem atraso */
+    /* Anima√ß√£o sem atraso */
 }
 
 @keyframes flash {
