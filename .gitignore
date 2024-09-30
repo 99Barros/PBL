@@ -406,3 +406,6 @@ FodyWeavers.xsd
 
 
 PBL_ThermoMotorIOT_Cad/bin/
+
+
+PBL_ThermoMotorIOT_Cad/DAO/ConexaoBD.cs
