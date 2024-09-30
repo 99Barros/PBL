@@ -1,0 +1,43 @@
+﻿@model List<PBL_ThermoMotorIOT_Cad.Models.EstufaViewModel>
+
+<h2>Listagem das Estufas</h2>
+<a href="Estufa/Create">Novo Registro</a>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Modelo</th>
+        <th>Descrição</th>
+        <th>Empresa</th>
+        <th>Preço</th>
+        <th>Período de Locação</th>
+        <th>Data de Cadastro</th>
+    </tr>
+    @if (Model is not null)
+    {
+        @foreach (var estufa in Model)
+        {
+            <tr>
+                <td>
+                    <a href="Estufa/Edit?id=@estufa.IdEstufa"> Editar</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:apagarEstufa(@estufa.IdEstufa)">Apagar</a>
+                </td>
+                <td>@estufa.Modelo</td>
+                <td>@estufa.Descricao</td>
+                <td>@ViewData[estufa.IdEmpresa.ToString()]</td>
+                <td>@estufa.Preco</td>
+                <td>@estufa.PeriodoLocacao</td>
+                <td>@estufa.DataCadastro</td>
+            </tr>
+        }
+    }
+</table>
+
+
+<script>
+    function apagarEstufa(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Estufa/Delete?id=' + id;
+    }
+</script>
