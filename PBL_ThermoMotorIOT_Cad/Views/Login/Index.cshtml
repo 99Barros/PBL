@@ -1,33 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Login ThermoMotor IoT Solution";
+    ViewData["Title"] = "ThermoMotor IoT Solutions";
 }
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewData["Title"]</title>
-    <!-- Link para o CSS -->
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans|Bad+Script" />
-</head>
-
-<body>
-    <header class="container">
-        <nav class="menu-opcoes">
-            <h1>
-                <ul>
-                    <li><a href="/Home">Home</a></li>
-                    <li><a href="/sobre">Sobre</a></li>
-                    <li><a href="/Empresa">Empresas</a></li>
-                    <li><a href="/Estufa">Estufa</a></li>
-                    <li><a href="/Usuario">Usuario</a></li>
-                    <li><a href="#">Dashboards</a></li>
-                </ul>
-            </h1>
-        </nav>
-    </header>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
     <section id="main">
         <section id="painel-login">
@@ -55,8 +31,3 @@
         <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
     </svg>
 
-    <footer>
-        <p>ThermoMotor IoT Solutions &copy; 2024</p>
-    </footer>
-</body>
-</html>
