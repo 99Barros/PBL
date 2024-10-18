@@ -13,10 +13,13 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             List<EstufaViewModel> listModel = new List<EstufaViewModel>();
             listModel = EstufaDAO.AllSearch();
             EmpresaDAO daoEmpresa = new();
-            foreach (EstufaViewModel model in listModel)
+            if (listModel != null)
             {
-                ViewData[model.IdEmpresa.ToString()]= daoEmpresa.Search(model.IdEmpresa).NomeEmpresa;
-            }            
+                foreach (EstufaViewModel model in listModel)
+                {
+                    ViewData[model.IdEmpresa.ToString()] = daoEmpresa.Search(model.IdEmpresa).NomeEmpresa;
+                }
+            }          
             return View(listModel);
         }
 
@@ -116,6 +119,9 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             }
             ViewBag.Usuarios = listaUsuarios;
         }
-
+        public IActionResult ConsultaAvancada()
+        {
+            return View("ConsultaAvancada");
+        }
     }
 }

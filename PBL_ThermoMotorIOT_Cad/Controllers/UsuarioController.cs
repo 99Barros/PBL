@@ -75,6 +75,9 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-
+        public IActionResult ConsultaAvancada()
+        {
+            return View("ConsultaAvancada");
+        }
     }
 }
