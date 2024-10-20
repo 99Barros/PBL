@@ -5,55 +5,8 @@ using DAO;
 
 namespace PBL_ThermoMotorIOT_Cad.DAO
 {
-    public class UsuarioDAO
+    public class UsuarioDAO : PadraoDAO<UsuarioViewModel>
     {
-        public static void Insert(UsuarioViewModel usuario)
-        {
-            SqlConnection connection = ConexaoBD.GetConexao();
-            string sql = "INSERT INTO usuarios values (@Login, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro)";
-            HelperDAO.ExecutaSql(sql, CreateParameters(usuario));
-        }
-        public static void Update(UsuarioViewModel usuario)
-        {
-            SqlConnection connection = ConexaoBD.GetConexao();
-            string sql = "UPDATE usuarios set Login=@Login, Senha=@Senha, Nome=@Nome, Email=@Email, " +
-                "DataNascimento=@DataNascimento, Telefone=@Telefone, DataRegistro=@DataRegistro WHERE IdUsuario = @IdUsuario";
-            HelperDAO.ExecutaSql(sql, CreateParameters(usuario));
-        }
-        public static void Delete(int id)
-        {
-            SqlConnection connection = ConexaoBD.GetConexao();
-            string sql = "DELETE FROM usuarios WHERE IdUsuario=" + id;
-            HelperDAO.ExecutaSql(sql, null);
-        }
-        public UsuarioViewModel Search(int id)
-        {
-            string sql = "select * from usuarios where IdUsuario = " + id;
-            DataTable tabela = HelperDAO.ExecutaSql(sql, null);
-            if (tabela.Rows.Count == 0)
-                return null;
-            else
-                return BuildModel(tabela.Rows[0]);
-        }
-        public static List<UsuarioViewModel> AllSearch()
-        {
-            string sql = "select * from usuarios order by IdUsuario";
-            DataTable tabela = HelperDAO.ExecutaSql(sql, null);
-            if (tabela.Rows.Count == 0)
-                return null;
-            else
-                return BuildTable(tabela);
-        }
-        public static List<UsuarioViewModel> BuildTable(DataTable tabela)
-        {
-            List<UsuarioViewModel> model = new List<UsuarioViewModel>();
-
-            foreach (DataRow registro in tabela.Rows)
-            {
-                model.Add(BuildModel(registro));
-            }
-            return model;
-        }
         private static UsuarioViewModel BuildModel(DataRow registro)
         {
             UsuarioViewModel model = new UsuarioViewModel();
@@ -64,12 +17,6 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
             model.DataNascimento = Convert.ToDateTime(registro["DataNascimento"]);
             model.Telefone = registro["Telefone"].ToString();
             return model;
-        }
-        public int ProximoId()
-        {
-            string sql = "select isnull(max(IdUsuario) +1, 1) as 'MAIOR' from usuarios";
-            DataTable tabela = HelperDAO.ExecutaSql(sql, null);
-            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
         }
         private static SqlParameter[] CreateParameters(UsuarioViewModel usuario)
         {
@@ -83,6 +30,12 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
             parameters[6] = new SqlParameter("Telefone", usuario.Telefone);
             parameters[7] = new SqlParameter("DataRegistro", usuario.DataRegistro);
             return parameters;
+        }
+         protected override void SetTabela()
+        {
+            Tabela = "Usuarios";
+            /*NomeSpListagem = "spListagemUsuarios";
+            conferir se a procedure precisa de join*/
         }
     }
 }
