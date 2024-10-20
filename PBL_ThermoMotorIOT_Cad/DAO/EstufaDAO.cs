@@ -5,64 +5,8 @@ using System.Data;
 
 namespace PBL_ThermoMotorIOT_Cad.DAO
 {
-    public class EstufaDAO
+    public class EstufaDAO : PadraoDAO<EstufaViewModel>
     {
-        public static void Insert(EstufaViewModel estufa)
-        {
-            SqlConnection connection = ConexaoBD.GetConexao();
-            estufa.DataCadastro = DateTime.Now;
-            string sql = "INSERT INTO estufas (IdUsuario, IdEmpresa, Modelo, Descricao, Preco, PeriodoLocacao, DataCadastro) " +
-                "VALUES (@IdUsuario, @IdEmpresa, @Modelo, @Descricao, @Preco, @PeriodoLocacao, @DataCadastro)";
-            HelperDAO.ExecutaSql(sql, CreateParameters(estufa));
-        }
-
-        public static void Update(EstufaViewModel estufa)
-        {
-            SqlConnection connection = ConexaoBD.GetConexao();
-            string sql = "UPDATE estufas SET IdUsuario = @IdUsuario, IdEmpresa = @IdEmpresa, Modelo = @Modelo, " +
-                "Descricao = @Descricao, Preco = @Preco, PeriodoLocacao = @PeriodoLocacao, DataCadastro = @DataCadastro " +
-                "WHERE IdEstufa = @IdEstufa";
-            HelperDAO.ExecutaSql(sql, CreateParameters(estufa));
-        }
-
-        public static void Delete(int id)
-        {
-            SqlConnection connection = ConexaoBD.GetConexao();
-            string sql = "DELETE FROM estufas WHERE IdEstufa = " + id;
-            HelperDAO.ExecutaSql(sql, null);
-        }
-
-        public EstufaViewModel Search(int id)
-        {
-            string sql = "SELECT * FROM estufas WHERE IdEstufa = " + id;
-            DataTable tabela = HelperDAO.ExecutaSql(sql, null);
-            if (tabela.Rows.Count == 0)
-                return null;
-            else
-                return BuildModel(tabela.Rows[0]);
-        }
-
-        public static List<EstufaViewModel> AllSearch()
-        {
-            string sql = "SELECT * FROM estufas ORDER BY IdEstufa";
-            DataTable tabela = HelperDAO.ExecutaSql(sql, null);
-            if (tabela.Rows.Count == 0)
-                return null;
-            else
-                return BuildTable(tabela);
-        }
-
-        public static List<EstufaViewModel> BuildTable(DataTable tabela)
-        {
-            List<EstufaViewModel> model = new List<EstufaViewModel>();
-
-            foreach (DataRow registro in tabela.Rows)
-            {
-                model.Add(BuildModel(registro));
-            }
-            return model;
-        }
-
         private static EstufaViewModel BuildModel(DataRow registro)
         {
             EstufaViewModel model = new EstufaViewModel();
@@ -76,14 +20,7 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
             model.DataCadastro = Convert.ToDateTime(registro["DataCadastro"]);
             return model;
         }
-
-        public int ProximoId()
-        {
-            string sql = "SELECT ISNULL(MAX(IdEstufa) + 1, 1) AS 'MAIOR' FROM estufas";
-            DataTable tabela = HelperDAO.ExecutaSql(sql, null);
-            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
-        }
-
+        
         private static SqlParameter[] CreateParameters(EstufaViewModel estufa)
         {
             SqlParameter[] parameters = new SqlParameter[8];
@@ -96,6 +33,12 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
             parameters[6] = new SqlParameter("PeriodoLocacao", estufa.PeriodoLocacao);
             parameters[7] = new SqlParameter("DataCadastro", estufa.DataCadastro);
             return parameters;
+        }
+         protected override void SetTabela()
+        {
+            Tabela = "Estufas";
+            /*NomeSpListagem = "spListagemEstufas";  
+            conferir se a procedure precisa de join*\
         }
     }
 }
