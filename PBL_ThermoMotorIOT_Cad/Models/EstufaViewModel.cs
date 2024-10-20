@@ -2,10 +2,8 @@
 
 namespace PBL_ThermoMotorIOT_Cad.Models
 {
-    public class EstufaViewModel
+    public class EstufaViewModel : PadraoViewModel
     {
-        public int IdEstufa { get; set; }
-
         [Required(ErrorMessage = "Usuário é obrigatório.")]
         public int IdUsuario { get; set; }
 

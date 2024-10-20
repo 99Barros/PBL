@@ -16,17 +16,17 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
 
         protected string Tabela { get; set; }
         protected string NomeSpListagem { get; set; } = "spListagem";
-        protected abstract SqlParameter[] CriaParametros(T model);
+        protected abstract SqlParameter[] CreateParameters(T model);
         protected abstract T BuildModel(DataRow registro);
         protected abstract void SetTabela();
 
         public virtual void Insert(T model)
         {
-            HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model));
+            HelperDAO.ExecutaProc("spInsert_" + Tabela, CreateParameters(model));
         }
         public virtual void Update(T model)
         {
-            HelperDAO.ExecutaProc("spUpdate_" + Tabela, CriaParametros(model));
+            HelperDAO.ExecutaProc("spUpdate_" + Tabela, CreateParameters(model));
         }
         public virtual void Delete(int id)
         {

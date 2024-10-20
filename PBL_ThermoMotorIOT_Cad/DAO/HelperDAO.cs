@@ -37,10 +37,6 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
             }
         }
 
-
-
-
-
         public static void ExecutaProc(string nomeProc, SqlParameter[] parametros)
         {
             using (SqlConnection conexao = ConexaoBD.GetConexao())
