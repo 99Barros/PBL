@@ -12,7 +12,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         {
             _logger = logger;
         }
-
+         
         public IActionResult Index()
         {
             return View();
