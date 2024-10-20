@@ -38,7 +38,7 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
         {
             Tabela = "Estufas";
             /*NomeSpListagem = "spListagemEstufas";  
-            conferir se a procedure precisa de join*\
+            conferir se a procedure precisa de join*/
         }
     }
 }
