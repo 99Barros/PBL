@@ -91,10 +91,11 @@ begin
 end
 GO
 
---> PROCEDURES ESPECIFICAS
+--> PROCEDURES ESPECIFICAS 
+--> ESTUFAS	 
 CREATE PROCEDURE spInsert_Estufas
 (
-	@id int,
+    @id int,
     @IdUsuario INT,
     @IdEmpresa INT,
     @Modelo NVARCHAR(50),
@@ -137,3 +138,107 @@ BEGIN
     WHERE id = @id;
 END
 GO
+
+--> USUÁRIOS
+CREATE PROCEDURE spInsert_Usuarios
+(
+    @Id int,
+    @Login NVARCHAR(50),
+    @Senha NVARCHAR(255),
+    @Nome NVARCHAR(100),
+    @Email NVARCHAR(100),
+    @DataNascimento DATE = NULL,
+    @Telefone NVARCHAR(20) = NULL,
+    @DataRegistro DATETIME = NULL
+)
+AS
+BEGIN
+    -- Se @DataRegistro não for fornecido, usará o valor padrão da coluna
+    IF @DataRegistro IS NULL
+        SET @DataRegistro = GETDATE();
+
+    INSERT INTO Usuarios
+    (Id, Login, Senha, Nome, Email, DataNascimento, Telefone, DataRegistro)
+    VALUES
+    (@Id, @Login, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro);
+END
+GO
+
+CREATE PROCEDURE spUpdate_Usuarios
+(
+    @Id INT,
+    @Login NVARCHAR(50),
+    @Senha NVARCHAR(255),
+    @Nome NVARCHAR(100),
+    @Email NVARCHAR(100),
+    @DataNascimento DATE = NULL,
+    @Telefone NVARCHAR(20) = NULL,
+    @DataRegistro DATETIME = NULL
+)
+AS
+BEGIN
+    UPDATE Usuarios
+    SET 
+        Login = @Login,
+        Senha = @Senha,
+        Nome = @Nome,
+        Email = @Email,
+        DataNascimento = @DataNascimento,
+        Telefone = @Telefone,
+        DataRegistro = ISNULL(@DataRegistro, DataRegistro) -- Mantém o valor atual se não for passado um novo valor
+    WHERE Id = @Id;
+END
+GO
+
+--> Empresas
+
+CREATE PROCEDURE spInsert_Empresas
+(
+    @Id INT;
+    @NomeEmpresa NVARCHAR(150),
+    @CNPJ NVARCHAR(20),
+    @Endereco NVARCHAR(255),
+    @Telefone NVARCHAR(20) = NULL,
+    @Email NVARCHAR(100) = NULL,
+    @DataCadastro DATETIME = NULL
+)
+AS
+BEGIN
+    -- Se @DataCadastro não for fornecido, usará o valor padrão da coluna
+    IF @DataCadastro IS NULL
+        SET @DataCadastro = GETDATE();
+
+    INSERT INTO Empresas
+    (Id, NomeEmpresa, CNPJ, Endereco, Telefone, Email, DataCadastro)
+    VALUES
+    (@Id, @NomeEmpresa, @CNPJ, @Endereco, @Telefone, @Email, @DataCadastro);
+END
+GO
+
+CREATE PROCEDURE spUpdate_Empresas
+(
+    @Id INT,
+    @NomeEmpresa NVARCHAR(150),
+    @CNPJ NVARCHAR(20),
+    @Endereco NVARCHAR(255),
+    @Telefone NVARCHAR(20) = NULL,
+    @Email NVARCHAR(100) = NULL,
+    @DataCadastro DATETIME = NULL
+)
+AS
+BEGIN
+    UPDATE Empresas
+    SET 
+        NomeEmpresa = @NomeEmpresa,
+        CNPJ = @CNPJ,
+        Endereco = @Endereco,
+        Telefone = @Telefone,
+        Email = @Email,
+        DataCadastro = ISNULL(@DataCadastro, DataCadastro) -- Mantém o valor atual se não for passado um novo valor
+    WHERE Id = @Id;
+END
+GO
+
+
+
+
