@@ -8,8 +8,9 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
     {
         public IActionResult Index()
         {
+            UsuarioDAO dao = new UsuarioDAO();
             List<UsuarioViewModel> listModel = new List<UsuarioViewModel>();
-            listModel = UsuarioDAO.AllSearch();
+            listModel = dao.Listagem();
             return View(listModel);
         }
 
@@ -19,7 +20,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 UsuarioViewModel usuario = new UsuarioViewModel();
                 UsuarioDAO dao = new UsuarioDAO();
-                usuario.IdUsuario = dao.ProximoId();
+                usuario.Id = dao.ProximoId();
                 return View("Form", usuario);
             }
             catch (Exception erro)
@@ -35,10 +36,10 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 UsuarioDAO dao = new UsuarioDAO();
                 usuario.DataRegistro = DateTime.Now;
-                if (dao.Search(usuario.IdUsuario) == null)
-                    UsuarioDAO.Insert(usuario);
+                if (dao.Search(usuario.Id) == null)
+                    dao.Insert(usuario);
                 else
-                    UsuarioDAO.Update(usuario);
+                    dao.Update(usuario);
                 return RedirectToAction("index");
             }
             catch (Exception erro)
@@ -67,7 +68,8 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         {
             try
             {
-                UsuarioDAO.Delete(id);
+                UsuarioDAO dao = new UsuarioDAO();
+                dao.Delete(id);
                 return RedirectToAction("index");
             }
             catch (Exception erro)

@@ -6,7 +6,7 @@ namespace PBL_ThermoMotorIOT_Cad.Models
     {
         [Required(ErrorMessage = "Usuário é obrigatório.")]
         public int IdUsuario { get; set; }
-
+        
         [Required(ErrorMessage = "Empresa é obrigatória.")]
         public int IdEmpresa { get; set; }
 

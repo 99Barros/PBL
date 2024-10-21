@@ -2,10 +2,8 @@
 
 namespace PBL_ThermoMotorIOT_Cad.Models
 {
-    public class EmpresaViewModel
+    public class EmpresaViewModel : PadraoViewModel
     {
-        public int IdEmpresa { get; set; }
-
         [Required(ErrorMessage = "Nome da empresa é obrigatório.")]
         [StringLength(150, ErrorMessage = "O nome da empresa deve ter no máximo 150 caracteres.")]
         public string NomeEmpresa { get; set; }

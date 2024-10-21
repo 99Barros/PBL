@@ -8,8 +8,9 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
     {
         public IActionResult Index()
         {
+            EmpresaDAO dao = new EmpresaDAO();
             List<EmpresaViewModel> listModel = new List<EmpresaViewModel>();
-            listModel = EmpresaDAO.AllSearch();
+            listModel = dao.Listagem();
             return View(listModel);
         }
         public IActionResult Create()
@@ -18,7 +19,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 EmpresaViewModel empresa = new EmpresaViewModel();
                 EmpresaDAO dao = new EmpresaDAO();
-                empresa.IdEmpresa = dao.ProximoId();
+                empresa.Id = dao.ProximoId();
                 return View("Form", empresa);
             }
             catch (Exception erro)
@@ -34,10 +35,10 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 EmpresaDAO dao = new EmpresaDAO();
                 empresa.DataCadastro = DateTime.Now;
-                if (dao.Search(empresa.IdEmpresa) == null)
-                    EmpresaDAO.Insert(empresa);
+                if (dao.Search(empresa.Id) == null)
+                    dao.Insert(empresa);
                 else
-                    EmpresaDAO.Update(empresa);
+                    dao.Update(empresa);
                 return RedirectToAction("index");
             }
             catch (Exception erro)
@@ -66,7 +67,8 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         {
             try
             {
-                EmpresaDAO.Delete(id);
+                EmpresaDAO dao = new EmpresaDAO();
+                dao.Delete(id);
                 return RedirectToAction("index");
             }
             catch (Exception erro)
