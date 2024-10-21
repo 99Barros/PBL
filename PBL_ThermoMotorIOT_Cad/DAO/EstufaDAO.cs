@@ -38,6 +38,7 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
         protected override void SetTabela()
         {
             Tabela = "Estufas";
+            //NomeSpListagem = "spListagemEstufas"; 
         }
 
     }

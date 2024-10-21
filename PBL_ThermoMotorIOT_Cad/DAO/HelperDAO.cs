@@ -8,7 +8,7 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
    
     public static class HelperDAO
     {
-        public static void ExecutaSQL(string sql, SqlParameter[] parametros)
+        public static void ExecutaSql(string sql, SqlParameter[] parametros)
         {
             using (SqlConnection conexao = ConexaoBD.GetConexao())
             {

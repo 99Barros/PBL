@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic; 
 using System.Linq; 
 using System.Threading.Tasks; 
-using PBL_ThermoMotorIOT.DAO; 
 using PBL_ThermoMotorIOT_Cad.Models;
 using Microsoft.AspNetCore.Mvc; 
-using Microsoft.AspNetCore.Mvc.Rendering; 
- 
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PBL_ThermoMotorIOT_Cad.DAO;
+
 namespace PBL_ThermoMotorIOT_Cad.Controllers 
 { 
     public class PadraoController<T> : Controller where T : PadraoViewModel 
@@ -79,9 +79,9 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         { 
             ModelState.Clear(); 
  
-            if (operacao == "I" && DAO.Consulta(model.Id) != null) 
+            if (operacao == "I" && DAO.Search(model.Id) != null) 
                 ModelState.AddModelError("Id", "Código já está em uso!"); 
-            if (operacao == "A" && DAO.Consulta(model.Id) == null) 
+            if (operacao == "A" && DAO.Search(model.Id) == null) 
                 ModelState.AddModelError("Id", "Este registro não existe!"); 
             if (model.Id <= 0) 
                 ModelState.AddModelError("Id", "Id inválido!"); 
@@ -92,7 +92,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             try 
             { 
                 ViewBag.Operacao = "A"; 
-                var model = DAO.Consulta(id); 
+                var model = DAO.Search(id); 
                 if (model == null) 
                     return RedirectToAction(NomeViewIndex); 
                 else 

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc; 
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PBL_ThermoMotorIOT_Cad.DAO;
 using PBL_ThermoMotorIOT_Cad.Models;
@@ -9,9 +9,9 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
     {
         public IActionResult Index()
         {
-            
+            EstufaDAO dao = new EstufaDAO();
             List<EstufaViewModel> listModel = new List<EstufaViewModel>();
-            listModel = EstufaDAO.AllSearch();
+            listModel = dao.Listagem();
             EmpresaDAO daoEmpresa = new();
             if (listModel != null)
             {
@@ -31,7 +31,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
                 PreparaListaUsuariosParaCombo();
                 EstufaViewModel estufa = new EstufaViewModel();
                 EstufaDAO dao = new EstufaDAO();
-                estufa.IdEstufa = dao.ProximoId();
+                estufa.Id = dao.ProximoId();
                 return View("Form", estufa);
             }
             catch (Exception erro)
@@ -46,10 +46,10 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 EstufaDAO dao = new EstufaDAO();
                 estufa.DataCadastro = DateTime.Now;
-                if (dao.Search(estufa.IdEstufa) == null)
-                    EstufaDAO.Insert(estufa);
+                if (dao.Search(estufa.Id) == null)
+                    dao.Insert(estufa);
                 else
-                    EstufaDAO.Update(estufa);
+                    dao.Update(estufa);
                 return RedirectToAction("Index");
             }
             catch (Exception erro)
@@ -83,7 +83,8 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         {
             try
             {
-                EstufaDAO.Delete(id);
+                EstufaDAO dao = new EstufaDAO();
+                dao.Delete(id);
                 return RedirectToAction("Index");
             }
             catch (Exception erro)
@@ -91,15 +92,16 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        private void PreparaListaEmpresasParaCombo()        {
-            
-            var empresas = EmpresaDAO.AllSearch();
+        private void PreparaListaEmpresasParaCombo()        
+        {
+            EmpresaDAO dao = new EmpresaDAO();
+            var empresas = dao.Listagem();
             List<SelectListItem> listaEmpresas = new List<SelectListItem>();
 
             listaEmpresas.Add(new SelectListItem("Selecione uma empresa...", "0"));
             foreach (var empresa in empresas)
             {
-                SelectListItem item = new SelectListItem(empresa.NomeEmpresa, empresa.IdEmpresa.ToString());
+                SelectListItem item = new SelectListItem(empresa.NomeEmpresa, empresa.Id.ToString());
                 listaEmpresas.Add(item);
             }
             ViewBag.Empresas = listaEmpresas;
@@ -107,14 +109,14 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
 
         private void PreparaListaUsuariosParaCombo()
         {
-
-            var usuarios = UsuarioDAO.AllSearch();
+            UsuarioDAO dao = new UsuarioDAO();
+            var usuarios = dao.Listagem();
             List<SelectListItem> listaUsuarios = new List<SelectListItem>();
 
             listaUsuarios.Add(new SelectListItem("Selecione um usuario...", "0"));
             foreach (var usuario in usuarios)
             {
-                SelectListItem item = new SelectListItem(usuario.Login, usuario.IdUsuario.ToString());
+                SelectListItem item = new SelectListItem(usuario.Login, usuario.Id.ToString());
                 listaUsuarios.Add(item);
             }
             ViewBag.Usuarios = listaUsuarios;

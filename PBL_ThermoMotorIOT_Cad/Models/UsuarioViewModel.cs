@@ -2,10 +2,8 @@
 
 namespace PBL_ThermoMotorIOT_Cad.Models
 {
-    public class UsuarioViewModel
+    public class UsuarioViewModel : PadraoViewModel
     {
-        public int IdUsuario { get; set; }
-
         [Required(ErrorMessage = "Usuário é obrigatório.")]
         [StringLength(50, ErrorMessage = "O usuário deve ter no máximo 50 caracteres.")]
         public string Login { get; set; }
