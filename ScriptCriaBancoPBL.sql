@@ -194,7 +194,7 @@ GO
 
 CREATE PROCEDURE spInsert_Empresas
 (
-    @Id INT;
+    @Id INT,
     @NomeEmpresa NVARCHAR(150),
     @CNPJ NVARCHAR(20),
     @Endereco NVARCHAR(255),
