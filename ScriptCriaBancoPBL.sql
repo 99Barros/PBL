@@ -43,7 +43,7 @@ CREATE TABLE Estufas (
 
 --> PROCEDURES GENERICAS
 
-create procedure spDelete
+create or alter procedure spDelete
 (
  @id int ,
  @tabela varchar(max)
@@ -57,7 +57,7 @@ begin
 end
 GO
 
-create procedure spConsulta
+create or alter procedure spConsulta
 (
  @id int ,
  @tabela varchar(max)
@@ -71,7 +71,7 @@ begin
 end
 GO
 
-create procedure spListagem
+create or alter procedure spListagem
 (
  @tabela varchar(max),
  @ordem varchar(max))
@@ -82,7 +82,7 @@ begin
 end
 GO
 
-create procedure spProximoId
+create OR ALTER procedure spProximoId
 (@tabela varchar(max))
 as
 begin
@@ -112,7 +112,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spUpdate_Estufas
+CREATE or alter PROCEDURE spUpdate_Estufas
 (
     @id INT,
     @IdUsuario INT,
@@ -139,7 +139,7 @@ END
 GO
 
 --> USUÁRIOS
-CREATE PROCEDURE spInsert_Usuarios
+CREATE or alter PROCEDURE spInsert_Usuarios
 (
     @Login NVARCHAR(50),
     @Senha NVARCHAR(255),
@@ -162,7 +162,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spUpdate_Usuarios
+CREATE or alter PROCEDURE spUpdate_Usuarios
 (
     @Id INT,
     @Login NVARCHAR(50),
@@ -190,7 +190,7 @@ GO
 
 --> Empresas
 
-CREATE PROCEDURE spInsert_Empresas
+CREATE or alter  PROCEDURE spInsert_Empresas
 (
     @NomeEmpresa NVARCHAR(150),
     @CNPJ NVARCHAR(20),
@@ -212,7 +212,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spUpdate_Empresas
+CREATE or alter PROCEDURE spUpdate_Empresas
 (
     @Id INT,
     @NomeEmpresa NVARCHAR(150),
@@ -235,7 +235,3 @@ BEGIN
     WHERE Id = @Id;
 END
 GO
-
-
-
-
