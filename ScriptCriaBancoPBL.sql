@@ -95,7 +95,6 @@ GO
 --> ESTUFAS	 
 CREATE PROCEDURE spInsert_Estufas
 (
-    @id int,
     @IdUsuario INT,
     @IdEmpresa INT,
     @Modelo NVARCHAR(50),
@@ -107,9 +106,9 @@ CREATE PROCEDURE spInsert_Estufas
 AS
 BEGIN
     INSERT INTO Estufas
-    (id,IdUsuario, IdEmpresa, Modelo, Descricao, Preco, PeriodoLocacao, DataCadastro)
+    (IdUsuario, IdEmpresa, Modelo, Descricao, Preco, PeriodoLocacao, DataCadastro)
     VALUES
-    (@id, @IdUsuario, @IdEmpresa, @Modelo, @Descricao, @Preco, @PeriodoLocacao, @DataCadastro)
+    (@IdUsuario, @IdEmpresa, @Modelo, @Descricao, @Preco, @PeriodoLocacao, @DataCadastro)
 END
 GO
 
@@ -142,7 +141,6 @@ GO
 --> USUÁRIOS
 CREATE PROCEDURE spInsert_Usuarios
 (
-    @Id int,
     @Login NVARCHAR(50),
     @Senha NVARCHAR(255),
     @Nome NVARCHAR(100),
@@ -158,9 +156,9 @@ BEGIN
         SET @DataRegistro = GETDATE();
 
     INSERT INTO Usuarios
-    (Id, Login, Senha, Nome, Email, DataNascimento, Telefone, DataRegistro)
+    (Login, Senha, Nome, Email, DataNascimento, Telefone, DataRegistro)
     VALUES
-    (@Id, @Login, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro);
+    (@Login, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro);
 END
 GO
 
@@ -194,7 +192,6 @@ GO
 
 CREATE PROCEDURE spInsert_Empresas
 (
-    @Id INT,
     @NomeEmpresa NVARCHAR(150),
     @CNPJ NVARCHAR(20),
     @Endereco NVARCHAR(255),
@@ -209,9 +206,9 @@ BEGIN
         SET @DataCadastro = GETDATE();
 
     INSERT INTO Empresas
-    (Id, NomeEmpresa, CNPJ, Endereco, Telefone, Email, DataCadastro)
+    (NomeEmpresa, CNPJ, Endereco, Telefone, Email, DataCadastro)
     VALUES
-    (@Id, @NomeEmpresa, @CNPJ, @Endereco, @Telefone, @Email, @DataCadastro);
+    (@NomeEmpresa, @CNPJ, @Endereco, @Telefone, @Email, @DataCadastro);
 END
 GO
 
