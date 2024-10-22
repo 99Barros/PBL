@@ -28,6 +28,9 @@ CREATE TABLE Empresas (
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
 );
 GO
+drop table Empresas
+drop table Usuarios
+
 CREATE TABLE Estufas (
     id INT PRIMARY KEY IDENTITY(1,1),
 	IdUsuario INT NOT NULL,
@@ -37,8 +40,8 @@ CREATE TABLE Estufas (
 	Preco money ,
 	PeriodoLocacao INT NOT NULL CHECK (PeriodoLocacao > 0),
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (IdEmpresa) REFERENCES Empresas(IdEmpresa) ON DELETE CASCADE,
-	FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario) ON DELETE CASCADE
+    FOREIGN KEY (IdEmpresa) REFERENCES Empresas(Id) ON DELETE CASCADE,
+	FOREIGN KEY (IdUsuario) REFERENCES Usuarios(Id) ON DELETE CASCADE
 );
 
 --> PROCEDURES GENERICAS
