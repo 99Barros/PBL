@@ -20,10 +20,11 @@
         {
             <tr>
                 <td>
-                    <a href="Estufa/Edit?id=@estufa.Id"> Editar</a>
+                    <a href="Estufa/Edit?id=@estufa.id"> Editar</a>
                     &nbsp;&nbsp;
-                    <a href="javascript:apagarEstufa(@estufa.Id)">Apagar</a>
+                    <a href="javascript:apagarEstufa(@estufa.id)">Apagar</a>
                 </td>
+                <td>@estufa.id</td>
                 <td>@estufa.Modelo</td>
                 <td>@estufa.Descricao</td>
                 <td>@ViewData[estufa.IdEmpresa.ToString()]</td>

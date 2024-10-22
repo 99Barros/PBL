@@ -12,7 +12,7 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
         protected override UsuarioViewModel BuildModel(DataRow registro)
         {
             UsuarioViewModel model = new UsuarioViewModel();
-            model.Id = Convert.ToInt32(registro["IdUsuario"]);
+            model.id = Convert.ToInt32(registro["Id"]);
             model.Login = registro["Login"].ToString();
             model.Nome = registro["Nome"].ToString();
             model.Email = registro["Email"].ToString();
@@ -22,15 +22,14 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
         }
         protected override SqlParameter[] CreateParameters(UsuarioViewModel usuario)
         {
-            SqlParameter[] parameters = new SqlParameter[8];
-            parameters[0] = new SqlParameter("IdUsuario", usuario.Id);
-            parameters[1] = new SqlParameter("Login", usuario.Login);
-            parameters[2] = new SqlParameter("Senha", usuario.Senha);
-            parameters[3] = new SqlParameter("Nome", usuario.Nome);
-            parameters[4] = new SqlParameter("Email", usuario.Email);
-            parameters[5] = new SqlParameter("DataNascimento", usuario.DataNascimento);
-            parameters[6] = new SqlParameter("Telefone", usuario.Telefone);
-            parameters[7] = new SqlParameter("DataRegistro", usuario.DataRegistro);
+            SqlParameter[] parameters = new SqlParameter[7];
+            parameters[0] = new SqlParameter("Login", usuario.Login);
+            parameters[1] = new SqlParameter("Senha", usuario.Senha);
+            parameters[2] = new SqlParameter("Nome", usuario.Nome);
+            parameters[3] = new SqlParameter("Email", usuario.Email);
+            parameters[4] = new SqlParameter("DataNascimento", usuario.DataNascimento);
+            parameters[5] = new SqlParameter("Telefone", usuario.Telefone);
+            parameters[6] = new SqlParameter("DataRegistro", usuario.DataRegistro);
             return parameters;
         }
         protected override void SetTabela()

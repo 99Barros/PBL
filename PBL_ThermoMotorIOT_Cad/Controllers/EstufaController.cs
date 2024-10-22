@@ -31,7 +31,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
                 PreparaListaUsuariosParaCombo();
                 EstufaViewModel estufa = new EstufaViewModel();
                 EstufaDAO dao = new EstufaDAO();
-                estufa.Id = dao.ProximoId();
+                estufa.id = dao.ProximoId();
                 return View("Form", estufa);
             }
             catch (Exception erro)
@@ -46,7 +46,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 EstufaDAO dao = new EstufaDAO();
                 estufa.DataCadastro = DateTime.Now;
-                if (dao.Search(estufa.Id) == null)
+                if (dao.Search(estufa.id) == null)
                     dao.Insert(estufa);
                 else
                     dao.Update(estufa);
@@ -101,7 +101,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             listaEmpresas.Add(new SelectListItem("Selecione uma empresa...", "0"));
             foreach (var empresa in empresas)
             {
-                SelectListItem item = new SelectListItem(empresa.NomeEmpresa, empresa.Id.ToString());
+                SelectListItem item = new SelectListItem(empresa.NomeEmpresa, empresa.id.ToString());
                 listaEmpresas.Add(item);
             }
             ViewBag.Empresas = listaEmpresas;
@@ -116,7 +116,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             listaUsuarios.Add(new SelectListItem("Selecione um usuario...", "0"));
             foreach (var usuario in usuarios)
             {
-                SelectListItem item = new SelectListItem(usuario.Login, usuario.Id.ToString());
+                SelectListItem item = new SelectListItem(usuario.Login, usuario.id.ToString());
                 listaUsuarios.Add(item);
             }
             ViewBag.Usuarios = listaUsuarios;

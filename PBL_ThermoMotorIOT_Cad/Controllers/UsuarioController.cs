@@ -20,7 +20,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 UsuarioViewModel usuario = new UsuarioViewModel();
                 UsuarioDAO dao = new UsuarioDAO();
-                usuario.Id = dao.ProximoId();
+                usuario.id = dao.ProximoId();
                 return View("Form", usuario);
             }
             catch (Exception erro)
@@ -36,7 +36,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 UsuarioDAO dao = new UsuarioDAO();
                 usuario.DataRegistro = DateTime.Now;
-                if (dao.Search(usuario.Id) == null)
+                if (dao.Search(usuario.id) == null)
                     dao.Insert(usuario);
                 else
                     dao.Update(usuario);

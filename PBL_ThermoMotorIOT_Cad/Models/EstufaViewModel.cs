@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PBL_ThermoMotorIOT_Cad.Models
 {
     public class EstufaViewModel : PadraoViewModel
     {
+        public override int id { get; set; }
         [Required(ErrorMessage = "Usuário é obrigatório.")]
         public int IdUsuario { get; set; }
         

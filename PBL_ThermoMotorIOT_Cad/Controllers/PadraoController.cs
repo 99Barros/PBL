@@ -47,7 +47,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         protected virtual void PreencheDadosParaView(string Operacao, T model) 
         { 
             if (GeraProximoId && Operacao == "I") 
-                model.Id = DAO.ProximoId(); 
+                model.id = DAO.ProximoId(); 
         } 
  
         public virtual IActionResult Save(T model, string Operacao) 
@@ -79,11 +79,11 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         { 
             ModelState.Clear(); 
  
-            if (operacao == "I" && DAO.Search(model.Id) != null) 
+            if (operacao == "I" && DAO.Search(model.id) != null) 
                 ModelState.AddModelError("Id", "Código já está em uso!"); 
-            if (operacao == "A" && DAO.Search(model.Id) == null) 
+            if (operacao == "A" && DAO.Search(model.id) == null) 
                 ModelState.AddModelError("Id", "Este registro não existe!"); 
-            if (model.Id <= 0) 
+            if (model.id <= 0) 
                 ModelState.AddModelError("Id", "Id inválido!"); 
         } 
  

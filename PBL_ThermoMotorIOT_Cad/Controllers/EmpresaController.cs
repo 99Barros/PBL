@@ -19,7 +19,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 EmpresaViewModel empresa = new EmpresaViewModel();
                 EmpresaDAO dao = new EmpresaDAO();
-                empresa.Id = dao.ProximoId();
+                empresa.id = dao.ProximoId();
                 return View("Form", empresa);
             }
             catch (Exception erro)
@@ -35,7 +35,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             {
                 EmpresaDAO dao = new EmpresaDAO();
                 empresa.DataCadastro = DateTime.Now;
-                if (dao.Search(empresa.Id) == null)
+                if (dao.Search(empresa.id) == null)
                     dao.Insert(empresa);
                 else
                     dao.Update(empresa);
