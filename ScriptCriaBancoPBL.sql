@@ -8,18 +8,18 @@ USE PBL;
 GO
 
 CREATE TABLE Usuarios (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-	Login NVARCHAR(50) UNIQUE NOT NULL,
+    Id INT PRIMARY KEY, 
+    Login NVARCHAR(50) UNIQUE NOT NULL,
     Senha NVARCHAR(255) NOT NULL,
     Nome NVARCHAR(100) NOT NULL,
     Email NVARCHAR(100) UNIQUE NOT NULL,
     DataNascimento DATE,
     Telefone NVARCHAR(20),
-	DataRegistro DATETIME NOT NULL DEFAULT GETDATE()
+    DataRegistro DATETIME NOT NULL DEFAULT GETDATE()
 );
 GO
 CREATE TABLE Empresas (
-    Id INT PRIMARY KEY IDENTITY(1,1),
+    Id INT PRIMARY KEY, 
     NomeEmpresa NVARCHAR(150) NOT NULL,
     CNPJ NVARCHAR(20) NOT NULL UNIQUE, 
     Endereco NVARCHAR(255) NOT NULL,
@@ -28,22 +28,19 @@ CREATE TABLE Empresas (
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
 );
 GO
-drop table Empresas
-drop table Usuarios
-
 CREATE TABLE Estufas (
-    id INT PRIMARY KEY IDENTITY(1,1),
-	IdUsuario INT NOT NULL,
+    Id INT PRIMARY KEY, 
+    IdUsuario INT NOT NULL,
     IdEmpresa INT NOT NULL,    
     Modelo NVARCHAR(50) NOT NULL,    
     Descricao NVARCHAR(255) NULL,
-	Preco money ,
-	PeriodoLocacao INT NOT NULL CHECK (PeriodoLocacao > 0),
+    Preco MONEY,
+    PeriodoLocacao INT NOT NULL CHECK (PeriodoLocacao > 0),
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
     FOREIGN KEY (IdEmpresa) REFERENCES Empresas(Id) ON DELETE CASCADE,
-	FOREIGN KEY (IdUsuario) REFERENCES Usuarios(Id) ON DELETE CASCADE
+    FOREIGN KEY (IdUsuario) REFERENCES Usuarios(Id) ON DELETE CASCADE
 );
-
+GO
 --> PROCEDURES GENERICAS
 
 create or alter procedure spDelete
@@ -98,20 +95,24 @@ GO
 --> ESTUFAS	 
 CREATE PROCEDURE spInsert_Estufas
 (
+    @Id INT,
     @IdUsuario INT,
     @IdEmpresa INT,
     @Modelo NVARCHAR(50),
     @Descricao NVARCHAR(255) = NULL,
     @Preco MONEY,
     @PeriodoLocacao INT,
-	@DataCadastro DATETIME
+    @DataCadastro DATETIME = NULL
 )
 AS
 BEGIN
+    IF @DataCadastro IS NULL
+        SET @DataCadastro = GETDATE();
+
     INSERT INTO Estufas
-    (IdUsuario, IdEmpresa, Modelo, Descricao, Preco, PeriodoLocacao, DataCadastro)
+    (Id, IdUsuario, IdEmpresa, Modelo, Descricao, Preco, PeriodoLocacao, DataCadastro)
     VALUES
-    (@IdUsuario, @IdEmpresa, @Modelo, @Descricao, @Preco, @PeriodoLocacao, @DataCadastro)
+    (@Id, @IdUsuario, @IdEmpresa, @Modelo, @Descricao, @Preco, @PeriodoLocacao, @DataCadastro);
 END
 GO
 
@@ -144,6 +145,7 @@ GO
 --> USUÁRIOS
 CREATE or alter PROCEDURE spInsert_Usuarios
 (
+    @Id INT, 
     @Login NVARCHAR(50),
     @Senha NVARCHAR(255),
     @Nome NVARCHAR(100),
@@ -154,14 +156,13 @@ CREATE or alter PROCEDURE spInsert_Usuarios
 )
 AS
 BEGIN
-    -- Se @DataRegistro não for fornecido, usará o valor padrão da coluna
     IF @DataRegistro IS NULL
         SET @DataRegistro = GETDATE();
 
     INSERT INTO Usuarios
-    (Login, Senha, Nome, Email, DataNascimento, Telefone, DataRegistro)
+    (Id, Login, Senha, Nome, Email, DataNascimento, Telefone, DataRegistro)
     VALUES
-    (@Login, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro);
+    (@Id, @Login, @Senha, @Nome, @Email, @DataNascimento, @Telefone, @DataRegistro);
 END
 GO
 
@@ -193,8 +194,9 @@ GO
 
 --> Empresas
 
-CREATE or alter  PROCEDURE spInsert_Empresas
+CREATE or alter PROCEDURE spInsert_Empresas
 (
+    @Id INT, 
     @NomeEmpresa NVARCHAR(150),
     @CNPJ NVARCHAR(20),
     @Endereco NVARCHAR(255),
@@ -204,14 +206,13 @@ CREATE or alter  PROCEDURE spInsert_Empresas
 )
 AS
 BEGIN
-    -- Se @DataCadastro não for fornecido, usará o valor padrão da coluna
     IF @DataCadastro IS NULL
         SET @DataCadastro = GETDATE();
 
     INSERT INTO Empresas
-    (NomeEmpresa, CNPJ, Endereco, Telefone, Email, DataCadastro)
+    (Id, NomeEmpresa, CNPJ, Endereco, Telefone, Email, DataCadastro)
     VALUES
-    (@NomeEmpresa, @CNPJ, @Endereco, @Telefone, @Email, @DataCadastro);
+    (@Id, @NomeEmpresa, @CNPJ, @Endereco, @Telefone, @Email, @DataCadastro);
 END
 GO
 
