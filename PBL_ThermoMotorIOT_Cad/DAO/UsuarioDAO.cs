@@ -16,20 +16,24 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
             model.Login = registro["Login"].ToString();
             model.Nome = registro["Nome"].ToString();
             model.Email = registro["Email"].ToString();
-            model.DataNascimento = Convert.ToDateTime(registro["DataNascimento"]);
+            model.Senha = registro["Senha"].ToString();
+            if (registro["DataNascimento"] != DBNull.Value){
+                model.DataNascimento = Convert.ToDateTime(registro["DataNascimento"]);
+            }
             model.Telefone = registro["Telefone"].ToString();
             return model;
         }
         protected override SqlParameter[] CreateParameters(UsuarioViewModel usuario)
         {
-            SqlParameter[] parameters = new SqlParameter[7];
-            parameters[0] = new SqlParameter("Login", usuario.Login);
-            parameters[1] = new SqlParameter("Senha", usuario.Senha);
-            parameters[2] = new SqlParameter("Nome", usuario.Nome);
-            parameters[3] = new SqlParameter("Email", usuario.Email);
-            parameters[4] = new SqlParameter("DataNascimento", usuario.DataNascimento);
-            parameters[5] = new SqlParameter("Telefone", usuario.Telefone);
-            parameters[6] = new SqlParameter("DataRegistro", usuario.DataRegistro);
+            SqlParameter[] parameters = new SqlParameter[8];            
+            parameters[0] = new SqlParameter("Id", usuario.id);
+            parameters[1] = new SqlParameter("Login", usuario.Login);
+            parameters[2] = new SqlParameter("Senha", usuario.Senha);
+            parameters[3] = new SqlParameter("Nome", usuario.Nome);
+            parameters[4] = new SqlParameter("Email", usuario.Email);
+            parameters[5] = new SqlParameter("DataNascimento", usuario.DataNascimento);
+            parameters[6] = new SqlParameter("Telefone", usuario.Telefone);
+            parameters[7] = new SqlParameter("DataRegistro", usuario.DataRegistro);
             return parameters;
         }
         protected override void SetTabela()
