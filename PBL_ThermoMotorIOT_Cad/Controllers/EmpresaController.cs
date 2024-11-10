@@ -4,77 +4,18 @@ using PBL_ThermoMotorIOT_Cad.Models;
 
 namespace PBL_ThermoMotorIOT_Cad.Controllers
 {
-    public class EmpresaController : Controller
+    public class EmpresaController : PadraoController<EmpresaViewModel>
     {
-        public IActionResult Index()
+        public EmpresaController()
         {
-            EmpresaDAO dao = new EmpresaDAO();
-            List<EmpresaViewModel> listModel = new List<EmpresaViewModel>();
-            listModel = dao.Listagem();
-            return View(listModel);
-        }
-        public IActionResult Create()
-        {
-            try
-            {
-                EmpresaViewModel empresa = new EmpresaViewModel();
-                EmpresaDAO dao = new EmpresaDAO();
-                empresa.id = dao.ProximoId();
-                return View("Form", empresa);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
+            DAO = new EmpresaDAO();
+            GeraProximoId = true;
         }
 
-
-        public IActionResult Salvar(EmpresaViewModel empresa)
+        public override IActionResult Save(EmpresaViewModel model, string Operacao)
         {
-            try
-            {
-                EmpresaDAO dao = new EmpresaDAO();
-                empresa.DataCadastro = DateTime.Now;
-                if (dao.Search(empresa.id) == null)
-                    dao.Insert(empresa);
-                else
-                    dao.Update(empresa);
-                return RedirectToAction("index");
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        public IActionResult Edit(int id)
-        {
-            try
-            {
-                EmpresaDAO dao = new EmpresaDAO();
-                EmpresaViewModel empresa = dao.Search(id);
-                if (empresa == null)
-                    return RedirectToAction("index");
-                else
-                    return View("Form", empresa);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                EmpresaDAO dao = new EmpresaDAO();
-                dao.Delete(id);
-                return RedirectToAction("index");
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
+            model.DataCadastro = System.DateTime.Now;
+            return base.Save(model, Operacao);
         }
         public IActionResult ConsultaAvancada()
         {

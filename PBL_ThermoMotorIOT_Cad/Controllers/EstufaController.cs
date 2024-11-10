@@ -5,93 +5,32 @@ using PBL_ThermoMotorIOT_Cad.Models;
 
 namespace PBL_ThermoMotorIOT_Cad.Controllers
 {
-    public class EstufaController : Controller
+    public class EstufaController : PadraoController<EstufaViewModel>
     {
-        public IActionResult Index()
+        public EstufaController()
         {
-            EstufaDAO dao = new EstufaDAO();
-            List<EstufaViewModel> listModel = new List<EstufaViewModel>();
-            listModel = dao.Listagem();
-            EmpresaDAO daoEmpresa = new();
-            if (listModel != null)
-            {
-                foreach (EstufaViewModel model in listModel)
-                {
-                    ViewData[model.IdEmpresa.ToString()] = daoEmpresa.Search(model.IdEmpresa).NomeEmpresa;
-                }
-            }          
-            return View(listModel);
+            DAO = new EstufaDAO();
+            GeraProximoId = true;
+        }
+        public override IActionResult Create()
+        {
+            PreparaListaEmpresasParaCombo();
+            PreparaListaUsuariosParaCombo();
+            return base.Create();
         }
 
-        public IActionResult Create()
+        public override IActionResult Save(EstufaViewModel model, string Operacao)
         {
-            try
-            {
-                PreparaListaEmpresasParaCombo();
-                PreparaListaUsuariosParaCombo();
-                EstufaViewModel estufa = new EstufaViewModel();
-                EstufaDAO dao = new EstufaDAO();
-                estufa.id = dao.ProximoId();
-                return View("Form", estufa);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
+            model.DataCadastro = System.DateTime.Now;
+            return base.Save(model, Operacao);
+        }
+        public override IActionResult Edit(int id)
+        {
+            PreparaListaEmpresasParaCombo();
+            PreparaListaUsuariosParaCombo();
+            return base.Edit(id);
         }
 
-        public IActionResult Salvar(EstufaViewModel estufa)
-        {
-            try
-            {
-                EstufaDAO dao = new EstufaDAO();
-                estufa.DataCadastro = DateTime.Now;
-                if (dao.Search(estufa.id) == null)
-                    dao.Insert(estufa);
-                else
-                    dao.Update(estufa);
-                return RedirectToAction("Index");
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        public IActionResult Edit(int id)
-        {
-            try
-            {
-                EstufaDAO dao = new EstufaDAO();
-                EstufaViewModel estufa = dao.Search(id);
-                if (estufa == null)
-                    return RedirectToAction("Index");
-                else
-                {
-                    PreparaListaEmpresasParaCombo();
-                    PreparaListaUsuariosParaCombo();
-                    return View("Form", estufa);
-                }
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                EstufaDAO dao = new EstufaDAO();
-                dao.Delete(id);
-                return RedirectToAction("Index");
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
         private void PreparaListaEmpresasParaCombo()        
         {
             EmpresaDAO dao = new EmpresaDAO();

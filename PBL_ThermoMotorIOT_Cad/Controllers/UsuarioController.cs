@@ -4,79 +4,25 @@ using PBL_ThermoMotorIOT_Cad.Models;
 
 namespace PBL_ThermoMotorIOT_Cad.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : PadraoController<UsuarioViewModel>
     {
-        public IActionResult Index()
+        public UsuarioController()
         {
-            UsuarioDAO dao = new UsuarioDAO();
-            List<UsuarioViewModel> listModel = new List<UsuarioViewModel>();
-            listModel = dao.Listagem();
-            return View(listModel);
+            DAO = new UsuarioDAO();
+            GeraProximoId = true;
+        }
+        protected override void PreencheDadosParaView(string Operacao, UsuarioViewModel model)
+        {
+            model.DataNascimento = DateTime.Now;
+            base.PreencheDadosParaView(Operacao, model);
         }
 
-        public IActionResult Create()
-        {
-            try
-            {
-                UsuarioViewModel usuario = new UsuarioViewModel();
-                UsuarioDAO dao = new UsuarioDAO();
-                usuario.id = dao.ProximoId();
-                return View("Form", usuario);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
+        public override IActionResult Save(UsuarioViewModel model, string Operacao)
+        {            
+            model.DataRegistro = DateTime.Now;
+            return base.Save(model, Operacao);
         }
 
-
-        public IActionResult Salvar(UsuarioViewModel usuario)
-        {
-            try
-            {
-                UsuarioDAO dao = new UsuarioDAO();
-                usuario.DataRegistro = DateTime.Now;
-                if (dao.Search(usuario.id) == null)
-                    dao.Insert(usuario);
-                else
-                    dao.Update(usuario);
-                return RedirectToAction("index");
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        public IActionResult Edit(int id)
-        {
-            try
-            {
-                UsuarioDAO dao = new UsuarioDAO();
-                UsuarioViewModel usuario = dao.Search(id);
-                if (usuario == null)
-                    return RedirectToAction("index");
-                else
-                    return View("Form", usuario);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                UsuarioDAO dao = new UsuarioDAO();
-                dao.Delete(id);
-                return RedirectToAction("index");
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
         public IActionResult ConsultaAvancada()
         {
             return View("ConsultaAvancada");
