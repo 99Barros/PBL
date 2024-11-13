@@ -17,11 +17,8 @@ namespace PBL_ThermoMotorIOT_Cad.Models
         public string CEP { get; set; }
 
         [Required(ErrorMessage = "Logradouro é obrigatório.")]
-        [StringLength(8, ErrorMessage = "O Numero deve ter no máximo 8 caracteres.")]
+        [StringLength(255, ErrorMessage = "O Logradouro deve ter no máximo 255 caracteres.")]
         public string Logradouro { get; set; }
-
-        [Required(ErrorMessage = "Numero é obrigatório.")]
-        public int Numero { get; set; }
 
         [Required(ErrorMessage = "Cidade é obrigatório.")]
         [StringLength(255, ErrorMessage = "A cidade deve ter no máximo 255 caracteres.")]
