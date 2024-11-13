@@ -7,8 +7,6 @@ GO
 USE PBL;
 GO
 
-drop table empresas
-drop table Estufas
 CREATE TABLE Usuarios (
     Id INT PRIMARY KEY, 
     Login NVARCHAR(50) UNIQUE NOT NULL,
