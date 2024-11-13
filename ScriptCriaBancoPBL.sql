@@ -21,12 +21,16 @@ GO
 CREATE TABLE Empresas (
     Id INT PRIMARY KEY, 
     NomeEmpresa NVARCHAR(150) NOT NULL,
-    CNPJ NVARCHAR(20) NOT NULL UNIQUE, 
-    Endereco NVARCHAR(255) NOT NULL,
+    CNPJ NVARCHAR(20) NOT NULL UNIQUE,
+    CEP NVARCHAR(9) NOT NULL,
+    Logradouro NVARCHAR(255) NOT NULL,
+    Cidade NVARCHAR(255) NOT NULL,
+    Estado NVARCHAR(2) NOT NULL,
     Telefone NVARCHAR(20),
     Email NVARCHAR(100),
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
 );
+
 GO
 CREATE TABLE Estufas (
     Id INT PRIMARY KEY, 
@@ -194,12 +198,15 @@ GO
 
 --> Empresas
 
-CREATE or alter PROCEDURE spInsert_Empresas
+CREATE OR ALTER PROCEDURE spInsert_Empresas
 (
     @Id INT, 
     @NomeEmpresa NVARCHAR(150),
     @CNPJ NVARCHAR(20),
-    @Endereco NVARCHAR(255),
+    @CEP NVARCHAR(9),
+    @Logradouro NVARCHAR(255),
+    @Cidade NVARCHAR(255),
+    @Estado NVARCHAR(2),
     @Telefone NVARCHAR(20) = NULL,
     @Email NVARCHAR(100) = NULL,
     @DataCadastro DATETIME = NULL
@@ -210,18 +217,22 @@ BEGIN
         SET @DataCadastro = GETDATE();
 
     INSERT INTO Empresas
-    (Id, NomeEmpresa, CNPJ, Endereco, Telefone, Email, DataCadastro)
+    (Id, NomeEmpresa, CNPJ, CEP, Logradouro, Cidade, Estado, Telefone, Email, DataCadastro)
     VALUES
-    (@Id, @NomeEmpresa, @CNPJ, @Endereco, @Telefone, @Email, @DataCadastro);
+    (@Id, @NomeEmpresa, @CNPJ, @CEP, @Logradouro, @Cidade, @Estado, @Telefone, @Email, @DataCadastro);
 END
 GO
 
-CREATE or alter PROCEDURE spUpdate_Empresas
+
+CREATE OR ALTER PROCEDURE spUpdate_Empresas
 (
     @Id INT,
     @NomeEmpresa NVARCHAR(150),
     @CNPJ NVARCHAR(20),
-    @Endereco NVARCHAR(255),
+    @CEP NVARCHAR(9),
+    @Logradouro NVARCHAR(255),
+    @Cidade NVARCHAR(255),
+    @Estado NVARCHAR(2),
     @Telefone NVARCHAR(20) = NULL,
     @Email NVARCHAR(100) = NULL,
     @DataCadastro DATETIME = NULL
@@ -232,10 +243,12 @@ BEGIN
     SET 
         NomeEmpresa = @NomeEmpresa,
         CNPJ = @CNPJ,
-        Endereco = @Endereco,
+        CEP = @CEP,
+        Logradouro = @Logradouro,
+        Cidade = @Cidade,
+        Estado = @Estado,
         Telefone = @Telefone,
         Email = @Email,
         DataCadastro = ISNULL(@DataCadastro, DataCadastro) -- Mantém o valor atual se não for passado um novo valor
     WHERE Id = @Id;
 END
-GO
