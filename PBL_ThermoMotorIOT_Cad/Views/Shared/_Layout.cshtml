@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - ThermoMotor IoT Solutions</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PBL_ThermoMotorIOT_Cad.styles.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/PBL_ThermoMotorIOT_Cad.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
     <header>
@@ -22,24 +22,39 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Sobre" asp-action="Index">Sobre</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Empresa" asp-action="Index">Empresas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Estufa" asp-action="Index">Estufas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                        </li>
+                        @if (ViewBag.Logado == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Empresa" asp-action="Index">Empresas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Estufa" asp-action="Index">Estufas</a>
+                            </li>
+                        }
+                        else{
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Create">Registrar-se</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Login">Login</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="http://localhost:8050/">Dashboards1</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dashboards2" asp-action="Index">Dashboards2</a>
                         </li>
+@*                         @if (ViewBag.Logado == true)
+                        {
+                            <span class="navbar-text ms-auto text-white">
+                                Olá, @ViewBag.NomeUsuario |
+                                <a href="/Usuario/LogOff" class="text-decoration-none text-white">Sair</a>
+                            </span>
+                        } *@
                     </ul>
                 </div>
             </div>

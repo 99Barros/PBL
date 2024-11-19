@@ -41,5 +41,18 @@ namespace PBL_ThermoMotorIOT_Cad.DAO
             Tabela = "Usuarios";
             //NomeSpListagem = "spListagemUsuarios"; 
         }
+        public UsuarioViewModel ChecaUsuario(string login, string senha)
+        {
+            var p = new SqlParameter[]
+            {
+                 new SqlParameter("Login", login),
+                 new SqlParameter("Senha", senha)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spChecaUsuario", p);
+            if (tabela.Rows.Count == 0)
+                return null;
+            else
+                return BuildModel(tabela.Rows[0]);
+        }
     }
 }

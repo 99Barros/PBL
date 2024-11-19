@@ -12,6 +12,10 @@ namespace PBL_ThermoMotorIOT_Cad.Models
         [StringLength(255, ErrorMessage = "A senha deve ter no máximo 255 caracteres.")]
         public string Senha { get; set; }
 
+        [Required(ErrorMessage = "Senha é obrigatória.")]
+        [StringLength(255, ErrorMessage = "A senha deve ter no máximo 255 caracteres.")]
+        public string SenhaConfirmacao { get; set; }
+
         [Required(ErrorMessage = "Nome é obrigatório.")]
         [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres.")]
         public string Nome { get; set; }

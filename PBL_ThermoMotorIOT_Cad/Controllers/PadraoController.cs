@@ -6,6 +6,7 @@ using PBL_ThermoMotorIOT_Cad.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PBL_ThermoMotorIOT_Cad.DAO;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace PBL_ThermoMotorIOT_Cad.Controllers
 {
@@ -15,6 +16,7 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         protected bool GeraProximoId { get; set; }
         protected string NomeViewIndex { get; set; } = "index";
         protected string NomeViewForm { get; set; } = "form";
+        protected bool ExigeAutenticacao { get; set; } = true;
 
 
         public virtual IActionResult Index()
@@ -119,6 +121,22 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
 
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (ExigeAutenticacao && !HelperController.VerificaUserLogado(HttpContext.Session))
+            {
+                TempData["logado"] = false;
+                TempData["nomeUsuario"] = "Visitante";
+                context.Result = RedirectToAction("Login", "Usuario");
+            }
+            else
+            {
+                ViewBag.Logado = true;
+                ViewBag.NomeUsuario = HttpContext.Session.GetString("NomeUsuario");
+                base.OnActionExecuting(context);
+            }
         }
     }
 }
