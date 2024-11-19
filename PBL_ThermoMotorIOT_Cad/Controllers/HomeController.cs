@@ -15,6 +15,8 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
          
         public IActionResult Index()
         {
+            ViewBag.Logado = TempData["logado"];
+            ViewBag.NomeUsuario = TempData["nomeUsuario"];
             return View();
         }
 

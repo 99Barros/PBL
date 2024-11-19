@@ -1,10 +1,32 @@
-/* Aplica o fundo azul marinho em todo o corpo da página */
+/*html {
+    font-size: 14px;
+}*/
+
+/*@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}*/
+
+/*.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}*/
+
+/*html {
+    position: relative;
+    min-height: 100%;
+}*/
+/*
+body {
+    margin-bottom: 60px;
+} */
+Aplica o fundo azul marinho em todo o corpo da página 
 html,body {
     background-color: #f4f4f4;
-    /* Azul marinho */
+     Azul marinho 
     font-family: 'PT Sans', sans-serif;
     color: #003366;
-    /* Cor do texto branco para contraste */
+     Cor do texto branco para contraste 
     margin: 0;
     padding: 0;
     display: flex;
@@ -34,22 +56,22 @@ html,body {
     background-color: #f4f4f4;
 }
 
-/* Estilo para o cabeçalho */
+ Estilo para o cabeçalho 
 header {
     width: 100%;
     padding: 0;
-    /* Remove espaçamento interno */
+     Remove espaçamento interno 
     margin: 0;
-    /* Remove espaçamento externo */
+     Remove espaçamento externo 
     background-color: #005b96;
     text-align: center;
     position: fixed;
-    /* Fixar a barra no topo da página */
+     Fixar a barra no topo da página 
     top: 0;
-    /* Posicionar no topo */
+     Posicionar no topo 
     left: 0;
     z-index: 1000;
-    /* Garante que o cabeçalho fique acima do conteúdo */
+     Garante que o cabeçalho fique acima do conteúdo 
 }
 
 footer {
@@ -66,7 +88,7 @@ h1 {
     color: #005b96;
 }
 
-/* Estilo para os links de navegação no cabeçalho */
+ Estilo para os links de navegação no cabeçalho 
 nav.menu-opcoes ul {
     list-style-type: none;
     padding: 0;
@@ -83,7 +105,7 @@ nav.menu-opcoes ul {
             text-decoration: none;
             font-size: 18px;
             padding: 10px 0;
-            /* Adiciona espaçamento interno */
+             Adiciona espaçamento interno 
             display: inline-block;
         }
 
@@ -91,34 +113,34 @@ nav.menu-opcoes ul {
                 text-decoration: underline;
             }
 
-/* Estilo do painel de login */
+ Estilo do painel de login 
 .container-login {
     background-color: #CDCDCD;
-    /* Azul mais claro para o painel */
+     Azul mais claro para o painel 
     padding: 30px;
     border-radius: 10px;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Sombra sutil */
+     Sombra sutil 
     margin-top: 75px;
-    /* Espaço para que o login não fique encostado no menu */
+     Espaço para que o login não fique encostado no menu 
 }
 
-    /* Estilo para o título de login */
+     Estilo para o título de login 
     .container-login h2 {
         text-align: center;
         margin-bottom: 20px;
         font-size: 24px;
     }
 
-    /* Estilo para os rótulos dos campos de formulário */
+     Estilo para os rótulos dos campos de formulário 
     .container-login label {
         display: block;
         margin-bottom: 5px;
         font-size: 16px;
     }
 
-    /* Estilo para os campos de entrada */
+     Estilo para os campos de entrada 
     .container-login input[type="text"],
     .container-login input[type="password"] {
         width: 100%;
@@ -129,12 +151,12 @@ nav.menu-opcoes ul {
         font-size: 16px;
     }
 
-    /* Estilo para o botão */
+     Estilo para o botão 
     .container-login button {
         width: 100%;
         padding: 10px;
         background-color: #0059b3;
-        /* Cor de botão azul */
+         Cor de botão azul 
         color: white;
         border: none;
         border-radius: 5px;
@@ -142,10 +164,10 @@ nav.menu-opcoes ul {
         cursor: pointer;
     }
 
-        /* Efeito ao passar o mouse no botão */
+         Efeito ao passar o mouse no botão 
         .container-login button:hover {
             background-color: #003d80;
-            /* Tom mais escuro ao passar o mouse */
+             Tom mais escuro ao passar o mouse 
         }
 
 .container-index {
@@ -175,7 +197,7 @@ nav.menu-opcoes ul {
         background-color: #003f66;
     }
 
-/* Validar visual home-section*/
+ Validar visual home-section
 .home-section {
     background-color: #ffffff;
     padding: 40px;
@@ -200,24 +222,24 @@ nav.menu-opcoes ul {
 
 .lightning-left {
     left: 250px;
-    /* Posição à esquerda */
+     Posição à esquerda 
     top: 50%;
-    /* Centraliza verticalmente */
+     Centraliza verticalmente 
     transform: translateY(-50%);
-    /* Ajusta o centro vertical */
+     Ajusta o centro vertical 
     animation-delay: 0s;
-    /* Animação sem atraso */
+     Animação sem atraso 
 }
 
 .lightning-right {
     right: 250px;
-    /* Posição à direita */
+     Posição à direita 
     top: 50%;
-    /* Centraliza verticalmente */
+     Centraliza verticalmente 
     transform: translateY(-50%);
-    /* Ajusta o centro vertical */
+     Ajusta o centro vertical 
     animation-delay: 0s;
-    /* Animação sem atraso */
+     Animação sem atraso 
 }
 
 @keyframes flash {
