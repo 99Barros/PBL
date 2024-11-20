@@ -197,6 +197,18 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE spChecaUsuario
+(       
+    @Login NVARCHAR(100),
+    @Senha NVARCHAR(100)
+)
+AS
+BEGIN
+	select * from Usuarios
+	where login = @Login and senha = @Senha
+END
+GO
+
 --> Empresas
 
 CREATE OR ALTER PROCEDURE spInsert_Empresas
