@@ -20,23 +20,16 @@
 body {
     margin-bottom: 60px;
 } */
-Aplica o fundo azul marinho em todo o corpo da página 
-html,body {
-    background-color: #f4f4f4;
-     Azul marinho 
+html, body {
+    background-color: #f4f4f4; /* Azul marinho */
     font-family: 'PT Sans', sans-serif;
     color: #003366;
-     Cor do texto branco para contraste 
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    position: relative;
+    height: 100%; /* Garante que o body ocupe toda a tela */
     overflow: hidden;
 }
+
 
 #login {
     margin-right: 10px;
