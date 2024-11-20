@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/css/consulta.css"/>
+
+<div class="container mt-5">
+    <h1>Consulta Avançada</h1>
+    <form id="consultaForm" class="row g-3">
+        <div class="col-md-4">
+            <label for="nomeUsuario" class="form-label">Nome do Usuário</label>
+            <input type="text" class="form-control" id="nomeUsuario" name="NomeUsuario" placeholder="Digite o nome do usuário">
+        </div>
+        <div class="col-md-4">
+            <label for="nomeEmpresa" class="form-label">Nome da Empresa</label>
+            <input type="text" class="form-control" id="nomeEmpresa" name="nomeEmpresa" placeholder="Digite o nome da empresa">
+        </div>
+        <div class="col-md-4">
+            <label for="nomeEstufa" class="form-label">Nome da Estufa</label>
+            <input type="text" class="form-control" id="nomeEstufa" name="nomeEstufa" placeholder="Digite o nome da estufa">
+        </div>
+        <div class="col-12">
+            <button type="button" id="btnBuscar" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <div class="table-container mt-4">
+        <table id="resultTable" class="custom-table">
+            <thead>
+                <!-- Cabeçalhos dinâmicos -->
+            </thead>
+            <tbody id="grid-body">
+                <!-- Dados dinâmicos -->
+            </tbody>
+        </table>
+    </div>
+</div>

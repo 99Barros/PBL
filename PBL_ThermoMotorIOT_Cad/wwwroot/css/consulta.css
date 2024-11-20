@@ -1,0 +1,48 @@
+﻿/* Centraliza a tabela dentro do container */
+.table-container {
+    display: flex;
+    justify-content: center; /* Alinha horizontalmente ao centro */
+    align-items: center; /* Alinha verticalmente ao centro */
+    margin-top: 20px;
+}
+
+/* Estilo personalizado para a tabela */
+.custom-table {
+    border-collapse: collapse;
+    table-layout: fixed; /* Garante que as colunas tenham larguras iguais */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    word-wrap: break-word; /* Quebra as palavras longas */
+}
+
+    /* Estilo para as colunas e linhas */
+    .custom-table th, .custom-table td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 8px;
+        overflow: hidden; /* Garante que o conteúdo não ultrapasse a célula */
+        text-overflow: ellipsis; /* Adiciona '...' para textos que ultrapassam */
+        white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+    }
+
+    /* Cabeçalho com estilo diferenciado */
+    .custom-table th {
+        background-color: #003366;
+        color: white;
+    }
+
+    /* Cor de fundo alternada para as linhas */
+    .custom-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .custom-table tr:hover {
+        background-color: #ddd;
+    }
+
+    /* Garantir que o texto em células largas se ajuste de forma adequada */
+    .custom-table td {
+        max-width: 200px; /* Define a largura máxima das células, ajustando conforme necessário */
+    }
