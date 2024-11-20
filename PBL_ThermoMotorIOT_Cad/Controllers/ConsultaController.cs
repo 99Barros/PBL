@@ -12,18 +12,16 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         {
             return View();
         }
-        public IEnumerable<dynamic> GetTabelaDados(string? NomeUsuario, string? nomeEmpresa, string? nomeEstufa)
+        public IEnumerable<dynamic> GetTabelaDados(string nomeUsuario, string nomeEmpresa = "", string nomeEstufa = "")
         {
             using (SqlConnection connection = ConexaoBD.GetConexao())
             {
-                connection.Open();
-
                 // Definindo os parâmetros como um objeto anônimo
                 var parametros = new
                 {
-                    nomeUsuario  = NomeUsuario,
-                    nomeEmpresa = nomeEmpresa,
-                    nomeEstufa = nomeEstufa
+                    nomeUsuario = nomeUsuario ?? "",
+                    nomeEmpresa = nomeEmpresa ?? "",
+                    nomeEstufa = nomeEstufa ?? ""
                 };
 
                 // Executando a stored procedure
