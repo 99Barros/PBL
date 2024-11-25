@@ -2,8 +2,7 @@ import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
-import math
-import numpy as np
+import requests
 from datetime import datetime
 import pytz
 
@@ -12,19 +11,25 @@ IP_ADDRESS = "4.228.58.99"
 PORT_STH = 8666
 DASH_HOST = "0.0.0.0"  # Set this to "0.0.0.0" to allow access from any IP
 
-# Function to simulate luminosity data as a sine wave
-def generate_sine_wave_data(lastN):
-    # Create an array of timestamps (for simplicity, use a range of numbers)
-    current_time = datetime.now()
-    timestamps = [current_time - timedelta(seconds=i * 10) for i in range(lastN)]  # 10s interval
-    timestamps = [t.strftime('%Y-%m-%d %H:%M:%S') for t in timestamps]
-    
-    # Generate a sine wave for temperature between 10 and 30
-    # Use numpy to create sine wave data for temperature
-    time_points = np.linspace(0, 2 * np.pi, lastN)  # Generate N points for sine wave
-    temperature_values = 20 + 5 * np.sin(time_points)  # Base of 20°C with amplitude of 5°C
-    
-    return timestamps, temperature_values
+# Function to get luminosity data from the API
+def get_data(attribute, lastN):
+    url = f"http://{IP_ADDRESS}:{PORT_STH}/STH/v1/contextEntities/type/Lamp/id/urn:ngsi-ld:Lamp:05x/attributes/{attribute}?lastN={lastN}"
+    headers = {
+        'fiware-service': 'smart',
+        'fiware-servicepath': '/'
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        try:
+            values = data['contextResponses'][0]['contextElement']['attributes'][0]['values']
+            return values
+        except KeyError as e:
+            print(f"Key error: {e}")
+            return []
+    else:
+        print(f"Error accessing {url}: {response.status_code}")
+        return []
 
 # Function to convert UTC timestamps to Lisbon time
 def convert_to_lisbon_time(timestamps):
@@ -42,7 +47,7 @@ def convert_to_lisbon_time(timestamps):
     return converted_timestamps
 
 # Set lastN value
-lastN = 20  # Get 10 most recent points at each interval
+lastN = 20  # Get 20 most recent points at each interval
 
 app = dash.Dash(__name__)
 
@@ -63,15 +68,21 @@ app.layout = html.Div([
     State('sensor-data-store', 'data')
 )
 def update_data_store(n, stored_data):
-    # Simulate Sensor Data with a sine wave
-    timestamps, temperature_values = generate_sine_wave_data(lastN)
+    # Get real sensor data from the API
+    data_temperature = get_data('temperature', lastN)
 
-    # Convert timestamps to Lisbon time
-    timestamps = convert_to_lisbon_time(timestamps)
+    if data_temperature:
+        temperature_values = [float(entry['attrValue']) for entry in data_temperature]
+        timestamps = [entry['recvTime'] for entry in data_temperature]
 
-    # Update the stored data with the new values
-    stored_data['timestamps'] = timestamps[-lastN:]
-    stored_data['temperature_values'] = temperature_values[-lastN:]
+        # Convert timestamps to Lisbon time
+        timestamps = convert_to_lisbon_time(timestamps)
+
+        # Update the stored data with the new values
+        stored_data['timestamps'] = timestamps[-lastN:]
+        stored_data['temperature_values'] = temperature_values[-lastN:]
+
+        return stored_data
 
     return stored_data
 
