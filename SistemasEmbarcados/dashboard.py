@@ -3,8 +3,15 @@ from dash import dcc, html
 from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 import requests
+import sys
 from datetime import datetime
 import pytz
+import subprocess
+
+try:
+    import pick
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pick"])
 
 # Constants for IP and port
 IP_ADDRESS = "4.228.58.99"
@@ -46,15 +53,42 @@ def convert_to_lisbon_time(timestamps):
         converted_timestamps.append(converted_time)
     return converted_timestamps
 
-# Set lastN value
-lastN = 20  # Get 10 most recent points at each interval
+# Function to calculate error
+def calculate_error(setpoint, process_value):
+    return setpoint - process_value
 
+# Function to calculate time constant
+def calculate_time_constant(process_value, setpoint, time):
+    lower_limit = 0.95 * setpoint
+    upper_limit = 1.05 * setpoint
+
+    if process_value >= lower_limit and process_value <= upper_limit:
+        return time
+    else:
+        return None
+
+# Set lastN value
+lastN = 20  # Get 20 most recent points at each interval
+
+# Dash application setup
 app = dash.Dash(__name__)
 
-app.layout = html.Div([
+# Variable to store user input for setpoint
+user_setpoint = None
+
+app.layout = html.Div([ 
     html.H1('Sensor Data Viewer'),
     dcc.Graph(id='temperature-graph'),
+    html.Div([
+        html.H4("Erro: "),
+        html.Div(id='error-output', style={'font-size': '20px', 'color': 'blue'}),
+    ]),
+    html.Div([
+        html.H4("Constante de Tempo: "),
+        html.Div(id='time-constant-output', style={'font-size': '20px', 'color': 'green'}),
+    ]),
     dcc.Store(id='sensor-data-store', data={'timestamps': [], 'temperature_values': []}),
+    dcc.Store(id='setpoint-store', data={'sp': None}),  # Store to hold setpoint
     dcc.Interval(
         id='interval-component',
         interval=10*1000,  # in milliseconds (10 seconds)
@@ -62,15 +96,23 @@ app.layout = html.Div([
     )
 ])
 
+# Inicialize uma variável para armazenar a constante de tempo determinada
+time_constant_determined = None
+
 @app.callback(
-    Output('sensor-data-store', 'data'),
+    [Output('sensor-data-store', 'data'),
+     Output('error-output', 'children'),
+     Output('time-constant-output', 'children')],
     Input('interval-component', 'n_intervals'),
     State('sensor-data-store', 'data')
 )
-def update_data_store(n, stored_data):
-        # Get Sensor Data
-    lastN = 20  #max register to show
+def update_data_and_calculate(n, stored_data):
+    global time_constant_determined  # Referência à variável global
+
+    # Update sensor data
     data_temperature = get_data('temperature', lastN)
+    setpoint = sp  # Setpoint fornecido pelo usuário
+    time_constant = None
 
     if data_temperature:
         temperature_values = [float(entry['attrValue']) for entry in data_temperature]
@@ -78,13 +120,39 @@ def update_data_store(n, stored_data):
 
         timestamps = convert_to_lisbon_time(timestamps)
 
-        # Substituir os dados antigos por novos até lastN
+        # Update stored data with the most recent lastN points
         stored_data['timestamps'] = timestamps[-lastN:]
         stored_data['temperature_values'] = temperature_values[-lastN:]
 
-        return stored_data
+        # Calculate error (last measured value relative to setpoint)
+        if temperature_values:
+            process_value = temperature_values[-1]
+            error = calculate_error(setpoint, process_value)
 
-    return stored_data
+            # Only calculate the time constant if it hasn't been determined yet
+            if time_constant_determined is None:
+                time_constant_determined = calculate_time_constant(process_value, setpoint, timestamps[-1])
+
+        else:
+            error = "Sem dados disponíveis"
+    else:
+        error = "Erro ao buscar dados do sensor"
+
+    # Prepare time constant output
+    time_constant_text = time_constant_determined if time_constant_determined is not None else "Fora da faixa"
+
+    # Ensure the function returns the correct structure for the data and outputs
+    return {'timestamps': stored_data['timestamps'], 'temperature_values': stored_data['temperature_values']}, f"{error:.2f} °C" if isinstance(error, (int, float)) else error, str(time_constant_text)
+
+@app.callback(
+    Output('temperature-graph', 'figure'),
+    Input('sensor-data-store', 'data')
+)
+def update_temperature_graph(stored_data):
+    fig_temperature = create_graph(
+        stored_data, 'temperature_values', 'red', 'Temperature (°C)', y_min=12, y_max=25
+    )
+    return fig_temperature
 
 def create_graph(trace_values, trace_name, color, y_title, y_min=None, y_max=None):
     fig = go.Figure(data=[go.Scatter(
@@ -123,15 +191,27 @@ def create_graph(trace_values, trace_name, color, y_title, y_min=None, y_max=Non
 
     return fig
 
-@app.callback(
-    Output('temperature-graph', 'figure'),
-    Input('sensor-data-store', 'data')
-)
-def update_temperature_graph(stored_data):
-    fig_temperature = create_graph(
-        stored_data, 'temperature_values', 'red', 'Temperature (°C)', y_min=12, y_max=25
-    )
-    return fig_temperature
-
 if __name__ == '__main__':
-    app.run_server(debug=True, host=DASH_HOST, port=8050)
+    name, index = pick.pick(options=['Malha Fechada', 'Malha Aberta'],
+                            title="Selecione o tipo de malha de controle",
+                            indicator='->',
+                            clear_screen=True
+                            )
+    if name.upper() == "MALHA FECHADA":
+        malha = "fechada"
+        print("Foi selecionada a malha fechada")
+        sp = float(input("Digite o valor do Set Point: "))
+        kp = float(input("Digite o valor do KP: "))
+        ki = float(input("Digite o valor do KI: "))
+        kd = float(input("Digite o valor do KD: "))
+        # Store the setpoint in the session state
+        user_setpoint = sp
+    elif name.upper() == "MALHA ABERTA":
+        malha = "aberta"
+        print("Foi selecionada a malha aberta")
+        pwm = float(input("Digite o valor do PWM: "))
+
+    # Set the setpoint in the store before starting the app
+    app.layout['setpoint-store'].data = {'sp': user_setpoint} if user_setpoint is not None else {'sp': 20}
+
+    app.run_server(host=DASH_HOST, port=8050)
