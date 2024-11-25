@@ -4,34 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard 2</title>
-    <link rel="stylesheet" href="site.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script src="~/js/dashboard.js" defer></script>
 </head>
 <body>
     <div class="header">
-        <h1>Dashboard - Total de cadastramentos</h1>
+        <h1>Dashboard - Total de Cadastros</h1>
     </div>
     <div class="dashboard">
-        <canvas id="myPieChart" class="chart"></canvas>
+        <div id="chartContainer"></div>
     </div>
-
     <script>
         // Dados do servidor passados via ViewBag
         const labels = @Html.Raw(Json.Serialize(ViewBag.Labels));
         const values = @Html.Raw(Json.Serialize(ViewBag.Values));
 
-        // Renderiza o gráfico usando Chart.js
-        const ctx = document.getElementById('myPieChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: values,
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                }]
-            }
-        });
+        // Prepara os dados para o gráfico
+        const dataPoints = labels.map((label, index) => ({
+            label: label,
+            y: values[index]
+        }));
     </script>
 </body>
 </html>
