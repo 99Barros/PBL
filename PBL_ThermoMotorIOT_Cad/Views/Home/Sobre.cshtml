@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "ThermoMotor IoT Solutions";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <section class="about-section">
+        <!-- Título principal -->
+        <h1 class="text-center mb-4">Quem Somos</h1>
+        <p class="lead">A <strong>ThermoMotor IoT Solutions</strong> nasceu da necessidade de solucionar um desafio crítico na produção de motores elétricos: o monitoramento em tempo real da temperatura nas estufas de secagem.</p>
+        <p class="lead">Através de nosso sistema de monitoramento IoT, oferecemos uma solução completa para garantir a qualidade do processo de secagem dos enrolamentos dos motores, fundamental para a durabilidade e a eficiência dos produtos.</p>
+        <p class="lead">Nosso protótipo em escala reduzida, equipado com sensores de temperatura e resistência de aquecimento, é a base para o desenvolvimento de um sistema escalável e robusto, aplicável a indústrias de todo o mundo.</p>
+        <p class="lead">Estamos comprometidos em entregar tecnologia confiável, otimizando a performance e o tempo de produção com inovação e precisão.</p>
+
+        <!-- Cards para destacar Missão e Visão -->
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Missão</h5>
+                        <p class="card-text">Transformar o controle térmico em um diferencial competitivo para empresas de motores elétricos ao redor do mundo.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Visão</h5>
+                        <p class="card-text">Ser referência global em soluções IoT para monitoramento de processos industriais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão para abrir o modal com mais informações -->
+        <div class="text-center mt-5">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoModal">Saiba mais sobre nosso sistema</button>
+        </div>
+    </section>
+</div>
+
+<!-- Modal com mais informações -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Mais sobre nosso sistema de monitoramento IoT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>O que é IoT?</h6>
+                <p>A Internet das Coisas (IoT) permite a comunicação entre dispositivos inteligentes, sem a necessidade de intervenção humana. Nosso sistema utiliza sensores de temperatura e resistência para monitorar as estufas de secagem, oferecendo dados em tempo real para garantir a eficiência do processo.</p>
+
+                <h6>Como Funciona?</h6>
+                <p>Os sensores são conectados a um servidor central que analisa os dados coletados e os transmite para os operadores através de uma interface web, permitindo uma gestão precisa e eficaz.</p>
+
+                <h6>Benefícios:</h6>
+                <ul>
+                    <li>Redução de falhas nos motores elétricos</li>
+                    <li>Otimização da produção e do tempo de secagem</li>
+                    <li>Monitoramento contínuo e em tempo real</li>
+                    <li>Aumento da durabilidade dos produtos</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Efeito de rolagem suave -->
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<!-- Adicionar o Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

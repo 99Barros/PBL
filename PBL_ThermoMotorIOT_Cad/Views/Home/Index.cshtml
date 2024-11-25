@@ -5,22 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container-index">
+    <section class="home-section text-center py-5" data-aos="fade-up" data-aos-duration="1000">
+        <!-- Título Principal -->
+        <h1 class="title mb-4">Inovação em Monitoramento Térmico para Motores Elétricos</h1>
 
-    <div class="container-index">
-        <section class="home-section">
-            <h1>Inovação em Monitoramento Térmico para Motores Elétricos</h1>
-            <p>Na <strong>ThermoMotor IoT Solutions</strong>, estamos à frente da inovação em sistemas de monitoramento
-                e controle térmico para motores elétricos. Com nossa tecnologia de ponta baseada em IoT, proporcionamos
-                soluções precisas e eficientes para a gestão da temperatura em processos críticos de secagem de
-                enrolamentos de motores.</p>
-            <p>Nossos sistemas garantem qualidade, durabilidade e confiabilidade para aplicações industriais, comerciais
-                e residenciais. Explore como a automação e o monitoramento em tempo real podem transformar o desempenho
-                dos seus motores, garantindo eficiência em cada etapa do processo.</p>
-            <p><strong>Descubra como nossas soluções podem otimizar sua produção!</strong></p>
-            <a href="~/saiba-mais.html" class="cta-button">Saiba Mais</a>
-            <a href="~/contato.html" class="cta-button">Contato</a>
-        </section>
+        <!-- Descrição -->
+        <p class="description mb-4">Na <strong>ThermoMotor IoT Solutions</strong>, estamos à frente da inovação em sistemas de monitoramento e controle térmico para motores elétricos. Com nossa tecnologia de ponta baseada em IoT, proporcionamos soluções precisas e eficientes para a gestão da temperatura em processos críticos de secagem de enrolamentos de motores.</p>
+
+        <p class="description mb-4">Nossos sistemas garantem qualidade, durabilidade e confiabilidade para aplicações industriais, comerciais e residenciais. Explore como a automação e o monitoramento em tempo real podem transformar o desempenho dos seus motores, garantindo eficiência em cada etapa do processo.</p>
+
+        <p class="cta-description font-weight-bold text-secondary mb-5">Descubra como nossas soluções podem otimizar sua produção!</p>
+
+        <!-- Carrossel de imagens -->
+        <div id="techCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-aos="fade-up" data-aos-duration="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://via.placeholder.com/1200x500/007BFF/FFFFFF?text=Monitoramento+T%C3%A9rmico" class="d-block w-100" alt="Monitoramento Térmico">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/1200x500/28A745/FFFFFF?text=IoT+Solu%C3%A7%C3%B5es" class="d-block w-100" alt="IoT Soluções">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/1200x500/FFC107/FFFFFF?text=Efici%C3%AAncia+Industrial" class="d-block w-100" alt="Eficiência Industrial">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#techCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#techCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Botões CTA -->
+        <div class="cta-buttons mb-4">
+            <a href="~/saiba-mais.html" class="cta-btn btn-primary">Saiba Mais</a>
+            <a href="~/contato.html" class="cta-btn btn-outline-dark">Contato</a>
+        </div>
+
+        <!-- Rodapé -->
+        <p class="footer-text">Soluções inteligentes para a indústria 4.0. Vamos transformar o futuro da produção de motores elétricos!</p>
+    </section>
+</div>
+
+<!-- Parallax Section -->
+<section class="parallax-section">
+    <div class="parallax-overlay">
+        <h2 class="parallax-title">Transforme sua produção com IoT</h2>
     </div>
+</section>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
-
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
