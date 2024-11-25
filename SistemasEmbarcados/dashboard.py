@@ -51,6 +51,7 @@ def convert_to_lisbon_time(timestamps):
             # Handle case where milliseconds are not present
             converted_time = utc.localize(datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')).astimezone(lisbon)
         converted_timestamps.append(converted_time)
+
     return converted_timestamps
 
 # Function to calculate error
@@ -58,12 +59,14 @@ def calculate_error(setpoint, process_value):
     return setpoint - process_value
 
 # Function to calculate time constant
-def calculate_time_constant(process_value, setpoint, time):
+def calculate_time_constant(process_value, setpoint, current_time, initial_time):
     lower_limit = 0.95 * setpoint
     upper_limit = 1.05 * setpoint
 
-    if process_value >= lower_limit and process_value <= upper_limit:
-        return time
+    if lower_limit <= process_value <= upper_limit:
+        # Calcular a diferença de tempo entre o tempo inicial e o tempo atual
+        time_constant = (current_time - initial_time).total_seconds()
+        return time_constant
     else:
         return None
 
@@ -107,42 +110,44 @@ time_constant_determined = None
     State('sensor-data-store', 'data')
 )
 def update_data_and_calculate(n, stored_data):
-    global time_constant_determined  # Referência à variável global
+    global time_constant_determined, initial_time  # Use o tempo inicial fornecido pelo usuário
 
-    # Update sensor data
+    # Atualizar dados do sensor
     data_temperature = get_data('temperature', lastN)
-    setpoint = sp  # Setpoint fornecido pelo usuário
+    setpoint = user_setpoint  # Usar o setpoint fornecido pelo usuário
     time_constant = None
 
     if data_temperature:
         temperature_values = [float(entry['attrValue']) for entry in data_temperature]
         timestamps = [entry['recvTime'] for entry in data_temperature]
-
         timestamps = convert_to_lisbon_time(timestamps)
 
-        # Update stored data with the most recent lastN points
+        # Atualizar dados armazenados
         stored_data['timestamps'] = timestamps[-lastN:]
         stored_data['temperature_values'] = temperature_values[-lastN:]
 
-        # Calculate error (last measured value relative to setpoint)
+        # Calcular o erro
         if temperature_values:
             process_value = temperature_values[-1]
             error = calculate_error(setpoint, process_value)
 
-            # Only calculate the time constant if it hasn't been determined yet
-            if time_constant_determined is None:
-                time_constant_determined = calculate_time_constant(process_value, setpoint, timestamps[-1])
-
+            # Calcular a constante de tempo apenas se ainda não foi determinada
+            if time_constant_determined is None and initial_time is not None:
+                time_constant_determined = calculate_time_constant(
+                    process_value, setpoint, timestamps[-1], initial_time
+                )
         else:
             error = "Sem dados disponíveis"
     else:
         error = "Erro ao buscar dados do sensor"
 
-    # Prepare time constant output
-    time_constant_text = time_constant_determined if time_constant_determined is not None else "Fora da faixa"
+    # Preparar saída da constante de tempo
+    time_constant_text = f"{time_constant_determined:.2f} segundos" if time_constant_determined is not None else "Fora da faixa"
 
-    # Ensure the function returns the correct structure for the data and outputs
-    return {'timestamps': stored_data['timestamps'], 'temperature_values': stored_data['temperature_values']}, f"{error:.2f} °C" if isinstance(error, (int, float)) else error, str(time_constant_text)
+    return {'timestamps': stored_data['timestamps'], 'temperature_values': stored_data['temperature_values']}, \
+           f"{error:.2f} °C" if isinstance(error, (int, float)) else error, \
+           time_constant_text
+
 
 @app.callback(
     Output('temperature-graph', 'figure'),
@@ -197,6 +202,10 @@ if __name__ == '__main__':
                             indicator='->',
                             clear_screen=True
                             )
+    initial_time = input("Digite a hora e o minuto que comecou o aquecimento (HH:mm) : ")    
+    initial_time = datetime.now().replace(hour=int(initial_time.split(":")[0]), minute=int(initial_time.split(":")[1]))
+    initial_time = initial_time.astimezone(pytz.timezone('Europe/Lisbon'))
+   
     if name.upper() == "MALHA FECHADA":
         malha = "fechada"
         print("Foi selecionada a malha fechada")
@@ -213,5 +222,5 @@ if __name__ == '__main__':
 
     # Set the setpoint in the store before starting the app
     app.layout['setpoint-store'].data = {'sp': user_setpoint} if user_setpoint is not None else {'sp': 20}
-
+    
     app.run_server(host=DASH_HOST, port=8050)
