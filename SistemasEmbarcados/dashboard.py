@@ -52,7 +52,7 @@ lastN = 20  # Get 10 most recent points at each interval
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
-    html.H1('Sensor Data Viewer'),
+    html.H1('Visualizador de Dados do Sensor'),
     dcc.Graph(id='temperature-graph'),
     dcc.Store(id='sensor-data-store', data={'timestamps': [], 'temperature_values': []}),
     dcc.Interval(
@@ -86,7 +86,7 @@ def update_data_store(n, stored_data):
 
     return stored_data
 
-def create_graph(trace_values, trace_name, color, y_title, y_min=None, y_max=None):
+def create_graph(trace_values, trace_name, color, y_title):
     fig = go.Figure(data=[go.Scatter(
         x=trace_values['timestamps'],
         y=trace_values[trace_name],
@@ -95,29 +95,10 @@ def create_graph(trace_values, trace_name, color, y_title, y_min=None, y_max=Non
         line=dict(color=color)
     )])
 
-    # Add limit traces with legends
-    if y_min is not None:
-        fig.add_trace(go.Scatter(
-            x=trace_values['timestamps'],
-            y=[y_min] * len(trace_values['timestamps']),
-            mode='lines',
-            line=dict(color='black', dash='dash'),
-            name=f'{y_title} Min'
-        ))
-
-    if y_max is not None:
-        fig.add_trace(go.Scatter(
-            x=trace_values['timestamps'],
-            y=[y_max] * len(trace_values['timestamps']),
-            mode='lines',
-            line=dict(color='black', dash='dash'),
-            name=f'{y_title} Max'
-        ))
-
     fig.update_layout(
-        title=f'{trace_name.capitalize()} Over Time',
-        xaxis_title='Timestamp',
-        yaxis_title=y_title,
+        title=f'{trace_name.capitalize()} ao Longo do Tempo',  # Título em português
+        xaxis_title='Timestamp',  # Título em português
+        yaxis_title=y_title,  # Título em português
         hovermode='closest'
     )
 
@@ -129,7 +110,7 @@ def create_graph(trace_values, trace_name, color, y_title, y_min=None, y_max=Non
 )
 def update_temperature_graph(stored_data):
     fig_temperature = create_graph(
-        stored_data, 'temperature_values', 'red', 'Temperature (°C)', y_min=12, y_max=25
+        stored_data, 'temperature_values', 'purple', 'Temperatura (°C)'  # Título do eixo Y em português
     )
     return fig_temperature
 
