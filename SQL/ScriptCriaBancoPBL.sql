@@ -279,6 +279,26 @@ Create or ALTER   procedure [dbo].[spConsultaAvancada]
 )
 as
 begin
+	IF @nomeUsuario = '' AND @nomeEmpresa = '' AND @nomeEstufa = ''
+	BEGIN
+		SELECT	Estufas.Modelo as Modelo,
+				Estufas.Descricao as Descrição,
+				Estufas.Preco as Preço,
+				Estufas.PeriodoLocacao as Período,
+				Usuarios.Nome as Nome,
+				Usuarios.Email as Email,
+				Usuarios.Telefone as Telefone,
+				Empresas.NomeEmpresa as Empresa,
+				Empresas.CNPJ as CNPJ,
+				Empresas.CEP as CEP,
+				Empresas.Logradouro as Logradouro,
+				Empresas.Numero as Numero,
+				Empresas.Cidade as Cidade,
+				Empresas.Estado as Estado
+        FROM Estufas
+        FULL JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
+        FULL JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+    END
   -- Caso apenas @nomeUsuario seja preenchido
     IF @nomeEmpresa = '' AND @nomeEstufa = ''
     BEGIN
@@ -296,9 +316,9 @@ begin
 				Empresas.Numero as Numero,
 				Empresas.Cidade as Cidade,
 				Empresas.Estado as Estado
-        FROM Estufas
-        LEFT JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
-        LEFT JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+        FROM Usuarios
+        FULL JOIN Estufas ON Usuarios.Id = Estufas.IdUsuario
+        FULL JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
         WHERE Usuarios.Nome LIKE '%' + @nomeUsuario + '%';
     END
     -- Caso apenas @nomeEmpresa seja preenchido
@@ -318,9 +338,9 @@ begin
 				Empresas.Numero as Numero,
 				Empresas.Cidade as Cidade,
 				Empresas.Estado as Estado
-        FROM Estufas
-        LEFT JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
-        LEFT JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+        FROM Empresas
+		FULL JOIN Estufas ON Empresas.Id = Estufas.IdEmpresa
+        FULL JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
         WHERE Empresas.NomeEmpresa LIKE '%' + @nomeEmpresa + '%';
     END
     -- Caso apenas @nomeEstufa seja preenchido
@@ -341,8 +361,8 @@ begin
 				Empresas.Cidade as Cidade,
 				Empresas.Estado as Estado
         FROM Estufas
-        LEFT JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
-        LEFT JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+        FULL JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
+        FULL JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
         WHERE Estufas.Descricao LIKE '%' + @nomeEstufa + '%';
     END
     -- Caso @nomeEmpresa e @nomeEstufa sejam preenchidos
@@ -363,8 +383,8 @@ begin
 				Empresas.Cidade as Cidade,
 				Empresas.Estado as Estado
         FROM Estufas
-        LEFT JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
-        LEFT JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+        FULL JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
+        FULL JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
         WHERE Empresas.NomeEmpresa LIKE '%' + @nomeEmpresa + '%'
           AND Estufas.Descricao LIKE '%' + @nomeEstufa + '%';
     END
@@ -385,9 +405,9 @@ begin
 				Empresas.Numero as Numero,
 				Empresas.Cidade as Cidade,
 				Empresas.Estado as Estado
-        FROM Estufas
-        LEFT JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
-        LEFT JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+        FROM Usuarios
+        FULL JOIN Estufas ON Usuarios.Id = Estufas.IdUsuario
+        FULL JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
         WHERE Usuarios.Nome LIKE '%' + @nomeUsuario + '%'
           AND Empresas.NomeEmpresa LIKE '%' + @nomeEmpresa + '%';
     END
@@ -409,8 +429,8 @@ begin
 				Empresas.Cidade as Cidade,
 				Empresas.Estado as Estado
         FROM Estufas
-        LEFT JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
-        LEFT JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+        FULL JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
+        FULL JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
         WHERE Usuarios.Nome LIKE '%' + @nomeUsuario + '%'
           AND Estufas.Descricao LIKE '%' + @nomeEstufa + '%';
     END
@@ -432,8 +452,8 @@ begin
 				Empresas.Cidade as Cidade,
 				Empresas.Estado as Estado
         FROM Estufas
-        LEFT JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
-        LEFT JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
+        FULL JOIN Usuarios ON Usuarios.Id = Estufas.IdUsuario
+        FULL JOIN Empresas ON Empresas.Id = Estufas.IdEmpresa
         WHERE Usuarios.Nome LIKE '%' + @nomeUsuario + '%'
         AND Empresas.NomeEmpresa LIKE '%' + @nomeEmpresa + '%'
         AND Estufas.Descricao LIKE '%' + @nomeEstufa + '%';
