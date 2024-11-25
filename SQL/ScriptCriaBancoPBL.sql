@@ -269,6 +269,7 @@ BEGIN
     WHERE Id = @Id;
 END
 
+GO
 --Create Consulta Avançada
 Create or ALTER   procedure [dbo].[spConsultaAvancada]
 (
