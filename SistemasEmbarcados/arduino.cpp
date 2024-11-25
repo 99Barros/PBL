@@ -12,14 +12,14 @@
 #include <PubSubClient.h>
 
 // Configurações - variáveis editáveis
-const char* default_SSID = "HORIZON"; // Nome da rede Wi-Fi
-const char* default_PASSWORD = "1234567890"; // Senha da rede Wi-Fi
-const char* default_BROKER_MQTT = "20.206.204.231"; // IP do Broker MQTT
+const char* default_SSID = "Barros"; // Nome da rede Wi-Fi
+const char* default_PASSWORD = "caio2424"; // Senha da rede Wi-Fi
+const char* default_BROKER_MQTT = "4.228.58.99"; // IP do Broker MQTT
 const int default_BROKER_PORT = 1883; // Porta do Broker MQTT
 const char* default_TOPICO_SUBSCRIBE = "/TEF/lamp05x/cmd"; // Tópico MQTT de escuta
 const char* default_TOPICO_PUBLISH_1 = "/TEF/lamp05x/attrs"; // Tópico MQTT de envio de informações para Broker
-const char* default_TOPICO_PUBLISH_2 = "/TEF/lamp05x/attrs/l"; // Tópico MQTT de envio de informações para Broker
-const char* default_ID_MQTT = "fiware_05x"; // ID MQTT
+const char* default_TOPICO_PUBLISH_2 = "/TEF/lamp05x/attrs/t"; // Tópico MQTT de envio de informações para Broker
+const char* default_ID_MQTT = "fiware_001"; // ID MQTT
 const int default_D4 = 2; // Pino do LED onboard
 // Declaração da variável para o prefixo do tópico
 const char* topicPrefix = "lamp05x";
@@ -69,7 +69,7 @@ void setup() {
 void loop() {
     VerificaConexoesWiFIEMQTT();
     EnviaEstadoOutputMQTT();
-    handleLuminosity();
+    handleTemperature();
     MQTT.loop();
 }
 
@@ -163,12 +163,12 @@ void reconnectMQTT() {
     }
 }
 
-void handleLuminosity() {
+void handleTemperature() {
     const int potPin = 34;
     int sensorValue = analogRead(potPin);
-    int luminosity = map(sensorValue, 0, 4095, 0, 100);
-    String mensagem = String(luminosity);
-    Serial.print("Valor da luminosidade: ");
+    int temp = map(sensorValue, 0, 4095, 0, 100);
+    String mensagem = String(temp);
+    Serial.print("Valor da temperatura: ");
     Serial.println(mensagem.c_str());
     MQTT.publish(TOPICO_PUBLISH_2, mensagem.c_str());
 }
