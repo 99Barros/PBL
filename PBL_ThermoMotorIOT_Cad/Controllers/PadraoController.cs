@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PBL_ThermoMotorIOT_Cad.DAO;
 using Microsoft.AspNetCore.Mvc.Filters;
+using DAO;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace PBL_ThermoMotorIOT_Cad.Controllers
 {
@@ -136,6 +139,28 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
                 ViewBag.Logado = true;
                 ViewBag.NomeUsuario = HttpContext.Session.GetString("NomeUsuario");
                 base.OnActionExecuting(context);
+            }
+        }
+
+        public IActionResult Dashboard()
+        {
+            try
+            {
+                using (SqlConnection connection = ConexaoBD.GetConexao())
+                {
+                    // Chamada da stored procedure para obter os totais
+                    var totais = connection.QueryFirstOrDefault("spObterTotais", commandType: System.Data.CommandType.StoredProcedure);
+
+                    // Passando os dados para a View via ViewBag
+                    ViewBag.Labels = new[] { "Usuários", "Empresas", "Estufas" };
+                    ViewBag.Values = new[] { totais.TotalUsuarios, totais.TotalEmpresas, totais.TotalEstufas };
+                }
+
+                return View("Dashboard");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
     }

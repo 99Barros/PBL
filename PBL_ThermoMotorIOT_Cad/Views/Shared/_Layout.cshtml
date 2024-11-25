@@ -37,7 +37,8 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Consulta" asp-action="Index">Consulta</a>
                             </li>
                         }
-                        else{
+                        else
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Create">Registrar-se</a>
                             </li>
@@ -49,16 +50,20 @@
                             <a class="nav-link text-dark" href="http://localhost:8050/">Dashboards1</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboards2" asp-action="Index">Dashboards2</a>
+                            <a class="nav-link text-dark" asp-controller="Dashboards2" asp-action="Index">Dashboards2</a>
                         </li>
-@*                         @if (ViewBag.Logado == true)
-                        {
-                            <span class="navbar-text ms-auto text-white">
-                                Olá, @ViewBag.NomeUsuario |
-                                <a href="/Usuario/LogOff" class="text-decoration-none text-white">Sair</a>
-                            </span>
-                        } *@
                     </ul>
+                    <div class="navbar-text text-end ms-auto">
+                        @if (ViewBag.Logado == true)
+                        {
+                            <span class="text-success">Bem-vindo, @ViewBag.NomeUsuario</span>
+                            <a href = "/Usuario/LogOff" class="text-decoration-none">Sair</a>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Você não está logado</span>
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
