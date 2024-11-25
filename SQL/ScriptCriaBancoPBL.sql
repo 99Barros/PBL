@@ -439,3 +439,13 @@ begin
         AND Estufas.Descricao LIKE '%' + @nomeEstufa + '%';
 	END
 end
+
+GO
+CREATE OR ALTER PROCEDURE spObterTotais
+AS
+BEGIN
+    SELECT 
+        (SELECT COUNT(*) FROM Usuarios) AS TotalUsuarios,
+        (SELECT COUNT(*) FROM Empresas) AS TotalEmpresas,
+        (SELECT COUNT(*) FROM Estufas) AS TotalEstufas;
+END;
