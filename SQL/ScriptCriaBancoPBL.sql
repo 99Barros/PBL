@@ -21,6 +21,7 @@ GO
 CREATE TABLE Empresas (
     Id INT PRIMARY KEY, 
     NomeEmpresa NVARCHAR(150) NOT NULL,
+	Imagem VARBINARY(MAX) NULL,
     CNPJ NVARCHAR(20) NOT NULL UNIQUE,
     CEP NVARCHAR(9) NOT NULL,
     Logradouro NVARCHAR(255) NOT NULL,
@@ -215,6 +216,7 @@ CREATE OR ALTER PROCEDURE spInsert_Empresas
 (
     @Id INT, 
     @NomeEmpresa NVARCHAR(150),
+	@Imagem VARBINARY(MAX),
     @CNPJ NVARCHAR(20),
     @CEP NVARCHAR(9),
     @Logradouro NVARCHAR(255),
@@ -231,9 +233,9 @@ BEGIN
         SET @DataCadastro = GETDATE();
 
     INSERT INTO Empresas
-    (Id, NomeEmpresa, CNPJ, CEP, Logradouro, Numero, Cidade, Estado, Telefone, Email, DataCadastro)
+    (Id, NomeEmpresa, Imagem, CNPJ, CEP, Logradouro, Numero, Cidade, Estado, Telefone, Email, DataCadastro)
     VALUES
-    (@Id, @NomeEmpresa, @CNPJ, @CEP, @Logradouro,@Numero, @Cidade, @Estado, @Telefone, @Email, @DataCadastro);
+    (@Id, @NomeEmpresa, @Imagem, @CNPJ, @CEP, @Logradouro,@Numero, @Cidade, @Estado, @Telefone, @Email, @DataCadastro);
 END
 GO
 
@@ -242,6 +244,7 @@ CREATE OR ALTER PROCEDURE spUpdate_Empresas
 (
     @Id INT,
     @NomeEmpresa NVARCHAR(150),
+	@Imagem VARBINARY(MAX),
     @CNPJ NVARCHAR(20),
     @CEP NVARCHAR(9),
     @Logradouro NVARCHAR(255),
@@ -257,6 +260,7 @@ BEGIN
     UPDATE Empresas
     SET 
         NomeEmpresa = @NomeEmpresa,
+		Imagem = @Imagem,
         CNPJ = @CNPJ,
         CEP = @CEP,
         Logradouro = @Logradouro,
