@@ -15,14 +15,14 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
          
         public IActionResult Index()
         {
-            ViewBag.Logado = TempData["logado"];
-            ViewBag.NomeUsuario = TempData["nomeUsuario"];
+            ViewBag.Logado = HelperController.VerificaUserLogado(HttpContext.Session);
+            ViewBag.NomeUsuario = HttpContext.Session.GetString("NomeUsuario");
             return View();
         }
         public IActionResult Sobre()
         {
-            ViewBag.Logado = TempData["logado"];
-            ViewBag.NomeUsuario = TempData["nomeUsuario"];
+            ViewBag.Logado = HelperController.VerificaUserLogado(HttpContext.Session);
+            ViewBag.NomeUsuario = HttpContext.Session.GetString("NomeUsuario");
             return View("Sobre");
         }
 

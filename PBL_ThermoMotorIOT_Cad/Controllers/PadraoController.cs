@@ -130,8 +130,6 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         {
             if (ExigeAutenticacao && !HelperController.VerificaUserLogado(HttpContext.Session))
             {
-                TempData["logado"] = false;
-                TempData["nomeUsuario"] = "Visitante";
                 context.Result = RedirectToAction("Login", "Usuario");
             }
             else

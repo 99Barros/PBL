@@ -12,6 +12,8 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
         {
             try
             {
+                ViewBag.Logado = HelperController.VerificaUserLogado(HttpContext.Session);
+                ViewBag.NomeUsuario = HttpContext.Session.GetString("NomeUsuario");
                 using (SqlConnection connection = ConexaoBD.GetConexao())
                 {
                     // Chamada da stored procedure para obter os totais

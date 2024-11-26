@@ -10,6 +10,8 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Logado = HelperController.VerificaUserLogado(HttpContext.Session);
+            ViewBag.NomeUsuario = HttpContext.Session.GetString("NomeUsuario");
             return View();
         }
         public IEnumerable<dynamic> GetTabelaDados(string nomeUsuario, string nomeEmpresa = "", string nomeEstufa = "")
