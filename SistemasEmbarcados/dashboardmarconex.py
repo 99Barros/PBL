@@ -63,8 +63,7 @@ def calculate_time_constant(process_value, setpoint, current_time, initial_time)
     lower_limit = 0.95 * setpoint
     upper_limit = 1.05 * setpoint
 
-    if lower_limit <= process_value <= upper_limit:
-        # Calcular a diferença de tempo entre o tempo inicial e o tempo atual
+    if lower_limit <= process_value <= upper_limit:        
         time_constant = (current_time - initial_time).total_seconds()
         return time_constant
     else:
@@ -76,16 +75,11 @@ lastN = 20  # Get 20 most recent points at each interval
 # Dash application setup
 app = dash.Dash(__name__)
 
-<<<<<<< HEAD
 # Variable to store user input for setpoint
 user_setpoint = None
 
 app.layout = html.Div([ 
     html.H1('Sensor Data Viewer'),
-=======
-app.layout = html.Div([
-    html.H1('Visualizador de Dados do Sensor'),
->>>>>>> 501b7888fb18c866b66812aa4e0c5061f8b4b65f
     dcc.Graph(id='temperature-graph'),
     html.Div([
         html.H4("Erro: "),
@@ -164,7 +158,7 @@ def update_temperature_graph(stored_data):
     )
     return fig_temperature
 
-def create_graph(trace_values, trace_name, color, y_title):
+def create_graph(trace_values, trace_name, color, y_title, y_min=None, y_max=None):
     fig = go.Figure(data=[go.Scatter(
         x=trace_values['timestamps'],
         y=trace_values[trace_name],
@@ -173,28 +167,34 @@ def create_graph(trace_values, trace_name, color, y_title):
         line=dict(color=color)
     )])
 
+    # Add limit traces with legends
+    if y_min is not None:
+        fig.add_trace(go.Scatter(
+            x=trace_values['timestamps'],
+            y=[y_min] * len(trace_values['timestamps']),
+            mode='lines',
+            line=dict(color='black', dash='dash'),
+            name=f'{y_title} Min'
+        ))
+
+    if y_max is not None:
+        fig.add_trace(go.Scatter(
+            x=trace_values['timestamps'],
+            y=[y_max] * len(trace_values['timestamps']),
+            mode='lines',
+            line=dict(color='black', dash='dash'),
+            name=f'{y_title} Max'
+        ))
+
     fig.update_layout(
-        title=f'{trace_name.capitalize()} ao Longo do Tempo',  # Título em português
-        xaxis_title='Timestamp',  # Título em português
-        yaxis_title=y_title,  # Título em português
+        title=f'{trace_name.capitalize()} Over Time',
+        xaxis_title='Timestamp',
+        yaxis_title=y_title,
         hovermode='closest'
     )
 
     return fig
 
-<<<<<<< HEAD
-=======
-@app.callback(
-    Output('temperature-graph', 'figure'),
-    Input('sensor-data-store', 'data')
-)
-def update_temperature_graph(stored_data):
-    fig_temperature = create_graph(
-        stored_data, 'temperature_values', 'purple', 'Temperatura (°C)'  # Título do eixo Y em português
-    )
-    return fig_temperature
-
->>>>>>> 501b7888fb18c866b66812aa4e0c5061f8b4b65f
 if __name__ == '__main__':
     name, index = pick.pick(options=['Malha Fechada', 'Malha Aberta'],
                             title="Selecione o tipo de malha de controle",
