@@ -98,15 +98,15 @@ app.layout = html.Div([
             value='fechada',  # Default value
         ),
     ]),
-    # Input for setpoint value
+    # Adicionando ID para os labels
     html.Div([
-        html.H4("Digite o valor do Setpoint (°C):"),
-        dcc.Input(id='setpoint-input', type='number', value=20, step=0.1),  # Default setpoint value
+        html.H4("Digite o valor do Setpoint (°C):", id="setpoint-label"),
+        dcc.Input(id='setpoint-input', type='number', value=20, step=0.1),
     ]),
-    # Input for initial time
+
     html.Div([
-        html.H4("Digite a hora de início do aquecimento (HH:mm):"),
-        dcc.Input(id='initial-time-input', type='text', value='00:00', debounce=True),  # Default time value
+        html.H4("Digite a hora de início do aquecimento (HH:mm):", id="initial-time-label"),
+        dcc.Input(id='initial-time-input', type='text', value='00:00', debounce=True),
     ]),
     # Graph to display the temperature data
     dcc.Graph(id='temperature-graph'),
@@ -114,14 +114,17 @@ app.layout = html.Div([
         html.H4("Erro: "),
         html.Div(id='error-output', style={'font-size': '20px', 'color': 'blue'}),
     ]),
+
     html.Div([
         html.H4("Constante de Tempo: "),
         html.Div(id='time-constant-output', style={'font-size': '20px', 'color': 'green'}),
     ]),
+
     html.Div([
         html.H4("Ganho: "),
         html.Div(id='gain-output', style={'font-size': '20px', 'color': 'orange'}),
     ]),
+
     dcc.Store(id='sensor-data-store', data={'timestamps': [], 'temperature_values': []}),
     dcc.Store(id='setpoint-store', data={'sp': None}),
     dcc.Interval(
@@ -197,6 +200,29 @@ def update_data_and_calculate(n, loop_type, setpoint, initial_time_input, stored
            f"{error:.2f} °C" if isinstance(error, (int, float)) else error, \
            time_constant_text, \
            gain_text
+@app.callback(
+    [Output('setpoint-input', 'style'),
+     Output('initial-time-input', 'style'),
+     Output('setpoint-input', 'value'),
+     Output('initial-time-input', 'value'),
+     Output('setpoint-label', 'style'),
+     Output('initial-time-label', 'style'),
+     Output('error-output', 'style'),
+     Output('time-constant-output', 'style'),
+     Output('gain-output', 'style')],
+    [Input('loop-type-dropdown', 'value')]
+)
+def update_input_visibility(loop_type):
+    # Se a malha for aberta, esconda os campos de setpoint, horário, erro, constante de tempo e ganho
+    if loop_type == 'aberta':
+        return {'display': 'none'}, {'display': 'none'}, 20, '00:00', {'display': 'none'}, {'display': 'none'}, \
+               {'display': 'none'}, {'display': 'none'}, {'display': 'none'}
+    else:
+        # Caso contrário, mostre os campos e os labels, além de exibir erro, constante de tempo e ganho
+        return {'display': 'block'}, {'display': 'block'}, 20, '00:00', {'display': 'block'}, {'display': 'block'}, \
+               {'display': 'block'}, {'display': 'block'}, {'display': 'block'}
+
+
 
 @app.callback(
     Output('temperature-graph', 'figure'),
