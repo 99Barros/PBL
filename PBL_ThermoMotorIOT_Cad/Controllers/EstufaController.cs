@@ -12,6 +12,18 @@ namespace PBL_ThermoMotorIOT_Cad.Controllers
             DAO = new EstufaDAO();
             GeraProximoId = true;
         }
+        public override IActionResult Index()
+        {
+            List<EstufaViewModel> listModel = new List<EstufaViewModel>();
+            EstufaDAO dao = new();
+            listModel = dao.Listagem();
+            EmpresaDAO daoEmpresa = new();
+            foreach (EstufaViewModel model in listModel)
+            {
+                ViewData[model.IdEmpresa.ToString()] = daoEmpresa.Search(model.IdEmpresa).NomeEmpresa;
+            }
+            return base.Index(); 
+        }
         public override IActionResult Create()
         {
             PreparaListaEmpresasParaCombo();

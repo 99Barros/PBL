@@ -4,8 +4,9 @@
 @model List<PBL_ThermoMotorIOT_Cad.Models.UsuarioViewModel>
 
 <h2>Listagem dos Usuários</h2>
-<a href="Usuario/Create">Novo Registro</a>
-<a href="Usuario/ConsultaAvancada">Consulta Avançada</a>
+<a href="Usuario/Create">
+    <img src="~/img/add.png" alt="Adicionar" title="Adicionar" style="width:20px; height:20px;" />
+</a>
 <br />
 <table class="table table-responsive">
     <tr>
@@ -22,15 +23,19 @@
         {
             <tr>
                 <td>
-                    <a href="Usuario/edit?id=@usuario.id">Editar</a>
+                    <a href="Usuario/edit?id=@usuario.id">
+                        <img src="~/img/edit.png" alt="Editar" title="Editar" style="width:20px; height:20px;" />
+                        </a>
                     &nbsp;&nbsp;
-                    <a href="javascript:apagarUsuario(@usuario.id)">Apagar</a>
+                    <a href="javascript:apagarUsuario(@usuario.id)">
+                        <img src="~/img/delete.png" alt="Apagar" title="Apagar" style="width:20px; height:20px;" />
+                    </a>
                 </td>
                 <td>@usuario.Login</td>
                 <td>@usuario.Nome</td>
                 <td>@usuario.Email</td>
-                <td>@usuario.DataNascimento</td>
-                <td>@usuario.Telefone</td>                
+                <td>@Html.DisplayFor(model => usuario.DataNascimento)</td>
+                <td>@usuario.Telefone</td>
             </tr>
         }
     }

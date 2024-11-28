@@ -7,7 +7,7 @@ window.onload = function () {
             text: "Total de Cadastros"
         },
         axisY: {
-            interval: 1, // Define o intervalo de valores no eixo Y
+            interval: 5, // Define o intervalo de valores no eixo Y
             title: "Quantidade",
             includeZero: true // Garante que o eixo Y comece do zero
         },

@@ -1,8 +1,9 @@
 ﻿@model List<PBL_ThermoMotorIOT_Cad.Models.EstufaViewModel>
 
 <h2>Listagem das Estufas</h2>
-<a href="Estufa/Create">Novo Registro</a>
-<a href="Estufa/ConsultaAvancada">Consulta Avançada</a>
+<a href="Estufa/Create">
+    <img src="~/img/add.png" alt="Adicionar" title="Adicionar" style="width:20px; height:20px;" />
+</a>
 <br />
 <table class="table table-responsive">
     <tr>
@@ -21,9 +22,13 @@
         {
             <tr>
                 <td>
-                    <a href="Estufa/Edit?id=@estufa.id"> Editar</a>
-                    &nbsp;&nbsp;
-                    <a href="javascript:apagarEstufa(@estufa.id)">Apagar</a>
+                    <a href="Estufa/Edit?id=@estufa.id">
+                        <img src="~/img/edit.png" alt="Editar" title="Editar" style="width:20px; height:20px;" />
+                    </a>
+                        &nbsp;&nbsp;
+                    <a href="javascript:apagarEstufa(@estufa.id)">
+                        <img src="~/img/delete.png" alt="Apagar" title="Apagar" style="width:20px; height:20px;" />
+                    </a>
                 </td>
                 <td>@estufa.id</td>
                 <td>@estufa.Modelo</td>

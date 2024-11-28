@@ -5,7 +5,7 @@
 
 <h2>Cadastro de Empresa</h2>
 
-<form asp-action="Save" method="post" class="form">
+<form asp-action="Save"  enctype="multipart/form-data" method="post" class="form">
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
     <div class="row">
@@ -16,6 +16,12 @@
         <div class="col-md-6 form-group">
             <label asp-for="NomeEmpresa" class="control-label">Nome da Empresa</label>
             <input asp-for="NomeEmpresa" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Imagem" class="control-label">Imagem</label>
+            <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary" />
+            <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="100" />
+            <span asp-validation-for="Imagem" class="text-danger"></span>
         </div>
     </div>
 
@@ -68,3 +74,14 @@
         <button type="submit" class="btn btn-primary">Salvar Dados</button>
     </div>
 </form>
+
+<script>    
+    function exibirImagem() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("imgPreview").src = oFREvent.target.result;
+        };
+    }
+</script>
+
