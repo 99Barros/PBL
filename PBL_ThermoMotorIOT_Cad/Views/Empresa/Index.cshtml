@@ -6,7 +6,9 @@
 @model List<PBL_ThermoMotorIOT_Cad.Models.EmpresaViewModel>
 
 <h2>Listagem das Empresas</h2>
-<a href="Empresa/Create">Novo Registro</a>
+<a href="Empresa/Create">
+        <img src="~/img/add.png" alt="Adicionar" title="Adicionar" style="width:20px; height:20px;" />
+</a>
 <br />
 <table class="table table-responsive">
     <tr>
@@ -28,9 +30,13 @@
         {
             <tr>
                 <td>
-                    <a href="Empresa/edit?id=@empresa.id"> Editar</a>
+                    <a href="Empresa/edit?id=@empresa.id">
+                        <img src="~/img/edit.png" alt="Editar" title="Editar" style="width:20px; height:20px;" />
+                    </a>
                     &nbsp;&nbsp;
-                    <a href="javascript:apagarEmpresa(@empresa.id)">Apagar</a>
+                    <a href="javascript:apagarEmpresa(@empresa.id)">
+                        <img src="~/img/delete.png" alt="Apagar" title="Apagar" style="width:20px; height:20px;" />
+                    </a>
                 </td>
                 <td>@empresa.NomeEmpresa</td>
                 <td>@empresa.CNPJ</td>
@@ -39,11 +45,10 @@
                 <td>@empresa.Numero</td>
                 <td>@empresa.Cidade</td>
                 <td>@empresa.Estado</td>
-
                 <td>@empresa.Telefone</td>
                 <td>@empresa.Email</td>
                 <td>
-                <img src="data:image/jpeg;base64,@empresa.ImagemEmBase64" class="img-responsive" width="25" />
+                <img src="data:image/jpeg;base64,@empresa.ImagemEmBase64" class="img-responsive" width="40" />
                 </td>
             </tr>
         }
